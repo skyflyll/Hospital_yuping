@@ -2,8 +2,8 @@
   <div class="party-center">
     <div class="party-wrap">
       <div class="party-head">
-        <h2>xxxxxxxxxxxx</h2>
-        <a href="javascript:;">more >></a>
+        <h2>建党园地</h2>
+        <span><a href="javascript:;">更多 >></a></span>
       </div>
       <div class="party-content">
         <vue-seamless :data="partys" :class-option="classOption5" class="scroll-wrap">
@@ -20,13 +20,14 @@
     </div>
     <div class="center-wrap">
       <ul class="tabs">
-        <li class="li-tab" v-for="(item,index) in tabsParam"
-        @click="toggleTabs(index)"
-        :class="{active:index!=nowIndex}">
+        <li class="li-tab"
+            v-for="(item,index) in tabsParam"
+            @click="toggleTabs(index)"
+            :class="{active:index!=nowIndex}">
           {{item}}
         </li>
         <div class="div-tab" v-show="nowIndex===0">
-          <a href="">more >></a>
+          <a href="">更多 >></a>
           <ul>
             <li v-for="item in xinsheng"><a href="">
               <span>{{item.title}}</span>
@@ -35,7 +36,7 @@
           </ul>
         </div>
         <div class="div-tab" v-show="nowIndex===1">
-          <a href="">more >></a>
+          <a href="">更多 >></a>
           <ul>
             <li v-for="item in homes"><a href="">
               <span>{{item.title}}</span>
@@ -44,7 +45,7 @@
           </ul>
         </div>
         <div class="div-tab" v-show="nowIndex===2">
-          <a href="">more >></a>
+          <a href="">更多 >></a>
           <ul>
             <li v-for="item in works"><a href="">
               <span>{{item.title}}</span>
@@ -66,128 +67,128 @@
       return {
         partys: [
           {
-            title: '1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: '建党园地建党园地建党园地建党园地',
             href: 'javascript:;',
             img: require('../../assets/logo.png')
           },
           {
-            title: '2xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: '领导班子建党园地建党园地建党园地建党园地',
             href: 'javascript:;',
             img: require('../../assets/logo.png')
           },
           {
-            title: '3xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          }, {
-            title: '4xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: '领导班子建党园地建党园地建党园地建党园地',
             href: 'javascript:;',
             img: require('../../assets/logo.png')
           }, {
-            title: '5xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: '领导班子建党园地建党园地建党园地建党园地',
+            href: 'javascript:;',
+            img: require('../../assets/logo.png')
+          }, {
+            title: '领导班子建党园地建党园地建党园地建党园地',
             href: 'javascript:;',
             img: require('../../assets/logo.png')
           },
           {
-            title: '6xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: '领导班子建党园地建党园地建党园地建党园地',
             href: 'javascript:;',
             img: require('../../assets/logo.png')
           },
           {
-            title: '7xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: '领导班子建党园地建党园地建党园地建党园地',
             href: 'javascript:;',
             img: require('../../assets/logo.png')
           },
           {
-            title: '8xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+            title: '领导班子建党园地建党园地建党园地建党园地',
             href: 'javascript:;',
             img: require('../../assets/logo.png')
           }
         ],
-        tabsParam:['tab1','tab2','tab3'],
-        nowIndex:0,
-        xinsheng:[
+        tabsParam: ['患者心声', '职工之家','组织投票'],
+        nowIndex: 0,
+        xinsheng: [
           {
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
+            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
+            time: '2018-03-19',
+            href: 'javascript:;'
           },
           {
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
+            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
+            time: '2018-03-19',
+            href: 'javascript:;'
           }
         ],
-        homes:[
+        homes: [
           {
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
+            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
+            time: '2018-03-19',
+            href: 'javascript:;'
           },
           {
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
+            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
+            time: '2018-03-19',
+            href: 'javascript:;'
           }
         ],
-        works:[
+        works: [
           {
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
+            title: '党组织投票党组织投票党组织投票党组织投票',
+            time: '2018-03-19',
+            href: 'javascript:;'
           },
           {
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
-          },{
-            title:'homesxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'javascript:;'
+            title: '党组织投票党组织投票党组织投票党组织投票党组织投票党组织投票党组织投票党组织投票',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '党组织投票党组织投票党组织投票党组织投票',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '党组织投票党组织投票党组织投票党组织投票',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '党组织投票党组织投票党组织投票党组织投票',
+            time: '2018-03-19',
+            href: 'javascript:;'
+          }, {
+            title: '党组织投票党组织投票党组织投票党组织投票',
+            time: '2018-03-19',
+            href: 'javascript:;'
           }
         ]
       }
@@ -195,9 +196,9 @@
     components: {
       vueSeamless
     },
-    methods:{
-      toggleTabs:function (index) {
-        this.nowIndex=index
+    methods: {
+      toggleTabs: function (index) {
+        this.nowIndex = index
       }
     },
     computed: {
@@ -215,40 +216,68 @@
 </script>
 
 <style lang="less" scoped>
+  @shadow:#d7dde4;
   @bgc: #f8f8f9;
-  @border: #e9eaec;
   @primary: #2d8cf0;
   @light: #5cadff;
   @dark: #2b85e4;
+  @content:#657180;
+  @sbg: #ffefeb;
+  @dark: #2b85e4;
+  @border:#dddee1;
   @heightNav: 38px;
   @height: 178px;
   .party-center {
     width: 1000px;
     height: 300px;
-    background: @bgc;
+    //background: @bgc;
     margin-top: 5px;
     .party-wrap {
-      width: 620px;
+      width: 622px;
       height: 300px;
       float: left;
+      border: 1px solid @light;
       .party-head {
         width: 100%;
-        height: 45px;
-        background: @primary;
-        h2 {
-          color: @bgc;
+        height: 38px;
+        box-sizing: border-box;
+        border-bottom: 1px solid @shadow;
+        line-height: 38px;
+        background-image: url("../../assets/headBg.jpg");
+        box-shadow: 5px -5px 30px @shadow inset;
+        h2{
+          padding: 0 30px 0 10px;
           float: left;
           font-size: 20px;
-          line-height: 45px;
-          padding-left: 5px;
+          height: 38px;
+          box-sizing: content-box;
+          color: @bgc;
+          background: @primary;
+          position: relative;
+          box-shadow: 0 -5px 8px @light inset;
+          &::after{
+            position: absolute;
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            left: 120px;
+            border-left: 38px solid @light;
+            border-top: 38px solid transparent;
+            box-shadow: 0 -5px 8px @light inset;
+
+          }
         }
-        a {
+        span{
           display: block;
           float: right;
-          color: @bgc;
-          line-height: 45px;
-          text-decoration: none;
-          padding-right: 10px;
+          margin-right: 20px;
+          a{
+            color: @content;
+            &:hover{
+              color: red;
+            }
+          }
         }
       }
       .party-content {
@@ -300,12 +329,13 @@
                   width: 180px;
                   height: 38px;
                   line-height: 38px;
-                  font-size: 22px;
+                  font-size: 14px;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   white-space: nowrap;
                   box-sizing: border-box;
                   margin-top: 10px;
+                  color: @content;
                 }
               }
             }
@@ -314,58 +344,68 @@
       }
     }
     .center-wrap {
-      width: 375px;
+      width: 370px;
       height: 300px;
-      background: @border;
+      background: #fff;
       float: right;
       padding: 0;
-      border:0;
-      .tabs{
-        width: 375px;
-        height: 45px;
-        padding:0;
+      border: 0;
+      .tabs {
+        width: 370px;
+        height: 38px;
+        padding: 0;
         background: @primary;
-        line-height: 45px;
+        line-height: 38px;
         font-size: 20px;
         border: 0;
-        .li-tab{
+        .li-tab {
           border: 0;
           padding: 0;
           margin: 0;
-          min-width: 100px;
-          height: 42.5px;
-          display:inline-block;
+          min-width: 80px;
+          height: 36px;
+          display: inline-block;
           text-align: center;
-          background: @bgc;
+          border-left: 1px solid @light;
+          background: #fff;
           color: @primary;
         }
-        .div-tab{
-          width: 375px;
-          height: 300px;
+        .div-tab {
+          width: 370px;
+          min-height: 200px;
           position: relative;
-          &>a{
+          padding-bottom: 18px;
+          border: 1px solid @light;
+          border-top: 0;
+          & > a {
             color: @bgc;
             position: absolute;
-            right: 5px;
-            top: -43px;
-            &:hover{
+            right: 18px;
+            top: -38px;
+            &:hover {
               color: red;
             }
           }
-          ul{
+          ul {
             list-style: none;
-            width: 375px;
+            width: 370px;
             padding-top: 15px;
-            li{
+            li {
               display: block;
               width: 375px;
               height: 38px;
               line-height: 38px;
-              a{
-                span{
+
+              a {
+                display: block;
+                color: @content;
+                &:hover{
+                  color: red;
+                }
+                span {
                   display: block;
                   height: 38px;
-                  &:first-child{
+                  &:first-child {
                     float: left;
                     width: 260px;
                     overflow: hidden;
@@ -373,7 +413,7 @@
                     white-space: nowrap;
                     padding-left: 10px;
                   }
-                  &:last-child{
+                  &:last-child {
                     float: right;
                     width: 100px;
                   }
@@ -382,12 +422,11 @@
             }
           }
         }
-        .active{
+        .active {
           background: @primary;
-          color: @bgc;
+          color: #fff;
         }
       }
-
 
     }
   }

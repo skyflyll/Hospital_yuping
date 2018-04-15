@@ -1,5 +1,6 @@
 <template>
   <div class="main">
+    <!--<v-notice></v-notice>-->
     <v-swipt></v-swipt>
     <v-news></v-news>
     <v-expert></v-expert>
@@ -28,6 +29,7 @@
       }
     },
     components: {
+      // 'v-notice':vNotice,
       'v-honor':vHonor,
       'v-news': vNews,
       'v-swipt': vSwipt,
@@ -53,7 +55,7 @@
     min-height: 2000px;
     .swipt {
       width: 1000px;
-      height: 250px;
+      height: 255px;
       background: @bgc;
     }
   }

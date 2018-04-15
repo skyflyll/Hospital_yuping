@@ -8,15 +8,15 @@
       </div>
       <div class="header-logo clearfix">
         <div class="logo-wrap">
-          <img src="" alt="logo-img">
+          <img src="../../assets/logo.jpg" alt="logo-img">
           <div class="logo-detials">
-            <h1>xxxxxxxxxxxxxxxxxxx</h1>
-            <span>xxxxxxxxxxxxxxxxxxx</span>
+            <h1>玉屏侗族自治县人民医院</h1>
+            <span>Yuping Dong Nationality Autonomous County People's Hospital</span>
           </div>
         </div>
         <div class="search-wrap">
           <div class="search">
-            <Input v-model="value" placeholder="Enter something..." size="large" class="search-input"/>
+            <Input v-model="value" placeholder="输入内容" size="large" class="search-input"/>
             <Button type="primary" icon="ios-search" class="search-button" size="large">搜索</Button>
           </div>
         </div>
@@ -35,23 +35,19 @@
         value: '',
         headerNavs: [
           {
-            name: "xxxxxxxx",
+            name: "注册",
             href: "javascript:;"
           },
           {
-            name: "xxxxxxxx",
+            name: "登录",
             href: "javascript:;"
           },
           {
-            name: "xxxxxxxx",
+            name: "媒体中心",
             href: "javascript:;"
           },
           {
-            name: "xxxxxxxx",
-            href: "javascript:;"
-          },
-          {
-            name: "xxxxxxxx",
+            name: "人才招聘",
             href: "javascript:;"
           }
         ]
@@ -61,12 +57,18 @@
 </script>
 
 <style lang="less" scoped>
+  @content: #657180;
+  @text: #464c5b;
+  @disable: #464c5b;
+  @sub: #9ea7b4;
   @bgc: #f8f8f9;
   @primary: #2d8cf0;
   @light: #5cadff;
   @dark: #2b85e4;
+  @shadow: #e3e8ee;
+  @orange: #ffd362;
   @heightNav: 38px;
-  @height: 178px;
+  @height: 168px;
   .clearfix:after {
     content: '';
     display: block;
@@ -97,7 +99,7 @@
               width: 80px;
               text-align: center;
               &:hover {
-                color: @light;
+                color: red;
               }
             }
           }
@@ -106,11 +108,11 @@
       .header-logo {
         .logo-wrap {
           width: 500px;
-          height: 140px;
+          height: 120px;
           float: left;
           img {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             display: block;
             background: @bgc;
             float: left;
@@ -125,7 +127,12 @@
               &:first-child {
                 margin-top: 30px;
                 font-size: 30px;
+                color: @primary;
               }
+            }
+            span{
+              font-size: 10px;
+              color: @light;
             }
           }
         }

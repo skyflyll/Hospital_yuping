@@ -1,0 +1,397 @@
+[
+  {
+    "url": "/",
+    "name": "网站首页",
+    "list": []
+  },
+  {
+    "url": "/gaikuang/",
+    "name": "医院概况",
+    "list": [
+      {
+        "url": "/gaikuang/lindao",
+        "name": "领导班子"
+      },
+      {
+        "url": "/gaikuang/zhici",
+        "name": "院长致辞"
+      },
+      {
+        "url": "/gaikuang/fazhan",
+        "name": "发展历程"
+      },
+      {
+        "url": "/gaikuang/jigou",
+        "name": "机构设置"
+      },
+      {
+        "url": "/gaikuang/tongxunlu",
+        "name": "通讯录"
+      }
+    ]
+  },
+  {
+    "url": "/keshi",
+    "name": "科室介绍",
+    "importantList": [
+      {
+        "name": "重点学科",
+        "importDetails": [
+          {
+            "url": "/keshi/class",
+            "name": "心内科"
+          },
+          {
+            "url": "/keshi/class",
+            "name": "心外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "呼吸与危重症医学科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "麻醉科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "普外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "肾内科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "肝胆外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "儿童科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "妇科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "泌尿外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "神经外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "急诊科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "骨科"
+          }
+        ]
+      },
+      {
+        "name": "临床科室",
+        "importDetails": [
+          {
+            "url": "/javascript:;",
+            "name": "生殖中心"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "消化内科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "内分泌科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "血液内科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "感染科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "神经内科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "干医科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "肿瘤科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "心功能科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "皮肤科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "康复医学科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "中医科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "听力中心（耳鸣眩晕门诊）"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "眼科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "耳鼻喉科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "口腔科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "胸外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "烧伤整形外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "重症监护科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "产科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "小儿外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "心理科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "乳腺外科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "门诊部"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "体检中心"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "南明堂诊所"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "疼痛科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "眼视光科"
+          }
+        ]
+      },
+      {
+        "name": "科技科室",
+        "importDetails": [
+          {
+            "url": "/javascript:;",
+            "name": "超声科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "内镜科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "高压氧科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "医学影像科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "输血科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "核医学科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "病理科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "神经电生理科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "检验科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "药剂科"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "中心实验室"
+          },
+          {
+            "url": "/javascript:;",
+            "name": "放射科"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "url": "/javascript:;",
+    "name": "医院荣誉",
+    "list": [
+      {
+        "url": "/javascript:;",
+        "name": "集体荣誉"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "个人荣誉"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "荣誉墙"
+      }
+    ]
+  },
+  {
+    "url": "/javascript:;",
+    "name": "专家团队",
+    "list": [
+      {
+        "url": "/javascript:;",
+        "name": "专家预约"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "专家简历"
+      }
+    ]
+  },
+  {
+    "url": "/javascript:;",
+    "name": "医疗设备",
+    "list": [
+      {
+        "url": "/javascript:;",
+        "name": "XXXX设备"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "XXXX设备"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "XXXX设备"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "XXXX设备"
+      }
+    ]
+  },
+  {
+    "url": "/javascript:;",
+    "name": "技术项目",
+    "list": [
+      {
+        "url": "/javascript:;",
+        "name": "XXXX技术"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "XXXXX项目"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "XXX新技术"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "XXXX新设备"
+      }
+    ]
+  },
+  {
+    "url": "/javascript:;",
+    "name": "医护天地",
+    "list": [
+      {
+        "url": "/javascript:;",
+        "name": "医生介绍"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "护士介绍"
+      }
+    ]
+  },
+  {
+    "url": "/javascript:;",
+    "name": "就医指南",
+    "list":
+    [
+      {
+        "url": "/javascript:;",
+        "name": "门诊就医流程"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "急诊就医流程"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "医院平面图"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "住院须知"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "出院须知"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "门诊查询"
+      },
+      {
+        "url": "/javascript:;",
+        "name": "医院楼层分布"
+      }
+    ]
+  },
+  {
+    "url": "/javascript:;",
+    "name": "门诊安排",
+    "list":
+    []
+  }
+]

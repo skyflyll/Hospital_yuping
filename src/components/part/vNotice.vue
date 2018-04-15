@@ -57,10 +57,6 @@
         return this.updateTime()
       },
     },
-    created(){
-      console.log('jjjjjjj');
-      var times= setInterval(this.updateTime,1000)
-    }
   }
 </script>
 
@@ -94,6 +90,7 @@
         line-height: 38px;
         box-sizing: border-box;
         padding-left: 5px;
+        color: red;
         border-right: 1px solid @border;
       }
       .notice-main {

@@ -2,10 +2,10 @@
   <vue-seamless :data="notices" :class-option="classOption5" class="scroll-wrap">
     <ul class="ul-item clearfix">
       <li class="li-item" v-for="item in notices">
-        <a :href="item.href">
+        <router-link :to="{path:'/javascript:;'}">
           <p>{{item.title}}</p>
-          <p>{{item.time}}</p>
-        </a>
+          <p>- - 2018-03-26</p>
+        </router-link>
       </li>
     </ul>
   </vue-seamless>
@@ -24,25 +24,25 @@
           {
             title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             time:'2018-03-19',
-            href:'javascript:;'
+            href:'/javascript:;'
           },
           {
             title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             time:'2018-03-19',
-            href:'javascript:;'
+            href:'/javascript:;'
           },
           {
             title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             time:'2018-03-19',
-            href:'javascript:;'
+            href:'/javascript:;'
           },{
             title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             time:'2018-03-19',
-            href:'javascript:;'
+            href:'/javascript:;'
           },{
             title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
             time:'2018-03-19',
-            href:'javascript:;'
+            href:'/javascript:;'
           }
           ]
       }
@@ -58,10 +58,34 @@
         }
       },
     },
+    methods: {
+
+    },
     created() {
       // setTimeout(() => {
       //   this.listData5 = [1, 2, 3, 4, 5,6,7,8,9,10]
       // }, 3000)
+      var that = this;
+      var params = new URLSearchParams();
+      params.append('limit', '5');
+      params.append('skip', '0');
+      // params.append('query', JSON.stringify({}));
+      params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
+      params.append('collection', 'announcement');
+      this.$axios({
+        method: 'post',
+        url:'/api/query',
+        data:params
+      })
+        .then(
+          function (res) {
+
+            console.log(res.data.data);
+            that.notices=res.data.data
+
+          }
+        )
+        .catch()
     }
   }
 </script>

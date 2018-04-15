@@ -14,13 +14,26 @@
   import vFooter from './components/part/vFooter'
   import vNotice from './components/part/vNotice'
 
+
   export default {
     name: 'App',
+    data() {
+      return {
+        pathName: false
+      }
+    },
     components: {
       'v-head': vHead,
       'v-nav': vNav,
+      'v-notice':vNotice,
       'v-footer': vFooter,
-      'v-notice': vNotice
+    },
+    beforeCreate(){
+
+    },
+    created() {
+
+
     }
   }
 </script>

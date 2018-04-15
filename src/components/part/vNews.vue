@@ -2,11 +2,13 @@
   <div class="news-center">
     <div class="news-wrap">
       <div class="news-head">
-        <h1>xxxxxxxxxxxxxxx</h1>
-        <a href="javascript:;">more >></a>
+        <h1>医院动态</h1>
+        <a href="javascript:;">更多 >></a>
       </div>
       <div class="news-content clearfix">
-        <div class="content-wrap" v-for="item in newsCenter" :key="item.name">
+        <div class="content-wrap"
+             v-for="(item,index) in newsCenter"
+             :key="index">
           <a :href="item.href">
             <img :src="item.url" alt="img">
             <div class="details">
@@ -33,61 +35,61 @@
       return{
         menu:[
           {
-            title:"xxxxxxxxxxxxxxx",
+            title:"安排门诊",
             href:"javascript:;"
           },{
-            title:"xxxxxxxxxxxxxxx",
+            title:"预约挂号",
             href:"javascript:;"
           },{
-            title:"xxxxxxxxxxxxxxx",
+            title:"网上答疑",
             href:"javascript:;"
           },{
-            title:"xxxxxxxxxxxxxxx",
+            title:"政策法规",
             href:"javascript:;"
           },{
-            title:"xxxxxxxxxxxxxxx",
+            title:"资料下载",
             href:"javascript:;"
           },{
-            title:"xxxxxxxxxxxxxxx",
+            title:"院长信箱",
             href:"javascript:;"
           }
           ],
         newsCenter:[
           {
-            name:'xxxxxxdxxxxxxxx',
+            name:'某某某动态信息',
             href:'javascript:;',
             url:require("../../assets/doctor.png"),
-            details:'xxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccxxxxxx',
+            details:'某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
             time:'2018-03-15'
           },{
-            name:'xxsxxxxxxxxxxxx',
+            name:'某某某动态信息',
             href:'javascript:;',
             url:require("../../assets/doctor.png"),
-            details:'xxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccxxxxxx',
+            details:'某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
             time:'2018-03-15'
           },{
-            name:'xxxxxxcxxxxxxxx',
+            name:'某某某动态信息',
             href:'javascript:;',
             url:require("../../assets/doctor.png"),
-            details:'xxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccxxxxxx',
+            details:'某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
             time:'2018-03-15'
           },{
-            name:'xxxxxxxxbxxxxxx',
+            name:'某某某动态信息',
             href:'javascript:;',
             url:require("../../assets/doctor.png"),
-            details:'xxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccxxxxxx',
+            details:'某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
             time:'2018-03-15'
           },{
-            name:'xxxxxxxexxxxxxx',
+            name:'某某某动态信息',
             href:'javascript:;',
             url:require("../../assets/doctor.png"),
-            details:'xxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccxxxxxx',
+            details:'某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
             time:'2018-03-15'
           },{
-            name:'xxxxxxxxxhxxxxx',
+            name:'某某某动态信息',
             href:'javascript:;',
             url:require("../../assets/doctor.png"),
-            details:'xxxxxxxxxxxxxxxxxxxxxxxcccccccccccccccccccxxxxxx',
+            details:'某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
             time:'2018-03-15'
           }
           ]
@@ -102,6 +104,8 @@
   @primary: #2d8cf0;
   @light: #5cadff;
   @dark: #2b85e4;
+  @content:#657180;
+  @sbg: #ffefeb;
   @heightNav: 38px;
   @height: 178px;
   .clearfix::after{
@@ -118,33 +122,54 @@
       width: 795px;
       float: left;
       .news-head{
-        height: 45px;
+        height: 38px;
         width: 100%;
         box-sizing: border-box;
-        line-height: 45px;
-        border-bottom: 1px solid @primary;
-        background: @bgc;
+        line-height: 38px;
+        background-image: url("../../assets/headBg.jpg");
+        box-shadow: 5px -5px 30px @shadow inset;
         h1{
-          color: @primary;
-          margin-left: 10px;
-          width: 500px;
+          padding: 0 30px 0 10px;
           float: left;
+          font-size: 20px;
+          height: 38px;
+          box-sizing: content-box;
+          color: @bgc;
+          background: @primary;
+          position: relative;
+          box-shadow: 0 -5px 8px @light inset;
+          &::after{
+            position: absolute;
+            content: '';
+            display: inline-block;
+            width: 0;
+            height: 0;
+            left: 120px;
+            border-left: 38px solid @light;
+            border-top: 38px solid transparent;
+            box-shadow: 0 -5px 8px @light inset;
+
+          }
         }
         a{
           width: 100px;
-          height: 45px;
+          height: 38px;
           display: block;
           float: right;
           text-align: center;
+          color: @content;
+          &:hover{
+            color: red;
+          }
         }
       }
       .news-content{
         width: 100%;
-        border-bottom: 1px solid @bgc;
-        padding: 5px 0;
+        border: 1px solid @light;
+        padding: 7.5px 6px;
         .content-wrap{
           height: 95px;
-          width: 395px;
+          width: 385px;
           margin: 5px 0;
           box-sizing: border-box;
           //border: 1px dashed @bgc;
@@ -173,20 +198,32 @@
             .details{
               overflow: hidden;
               padding-left: 5px;
+              color: @content;
               h2{
-                font-size: 22px;
+                font-size: 16px;
                 margin-top: 10px;
                 margin-bottom: -5px;
                 font-weight: 700;
+                &:hover{
+                  color: red;
+                }
               }
               p{
                 width: 90%;
                 overflow: hidden;
-                margin: 2px 0;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                margin: 5px 0;
+                &:hover{
+                  color: red;
+                }
               }
               span{
                 display: block;
                 margin: 2px 0;
+                &:hover{
+                  color: red;
+                }
               }
             }
           }
@@ -194,32 +231,38 @@
       }
     }
     .menu-wrap{
-      width: 200px;
+      width: 190px;
       float: right;
-      border:1px solid @bgc;
+      border:1px dashed @light;
       height: 370px;
       ul{
         list-style: none;
         li{
           box-sizing: border-box;
-          width: 180px;
+          width: 170px;
           height: 45px;
           line-height: 45px;
-          background: @primary;
+          background: @shadow;
+          background: url("../../assets/headBg.jpg");
+          box-shadow: 0 -5px 45px @sbg inset;
           margin: 10px 10px;
           border-radius: 5px;
           text-align: center;
           &:hover{
-            background: @light;
+            background: @bgc;
+            color: red;
           }
           &:first-child{
             margin-top: 20px;
           }
           a{
-            color: #fff;
+            display: block;
+            color: @content;
             font-size: 16px;
+            border-radius: 3px;
             &:hover{
-              color: @bgc;
+              color: red;
+              // box-shadow: 3px 3px 3px @shadow;
             }
           }
         }
