@@ -48,7 +48,7 @@
             href: "/news/list?table=announcement&type=6"
           }, {
             title: "院长信箱",
-            href: "javascript:;"
+            href: "mailto:270901715@qq.com"
           }
         ],
         newsCenter: [

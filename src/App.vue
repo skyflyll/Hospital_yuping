@@ -5,12 +5,14 @@
     <v-notice></v-notice>
     <router-view/>
     <v-footer></v-footer>
+    <!-- 返回顶部 -->
     <Back-top :bottom="50">
       <div class="back-top">
         <Icon type="chevron-up"></Icon>
         <div>返回<br/>顶端</div>
       </div>
     </Back-top>
+    <!-- 聊天窗口 -->
     <div class="chat-wrap" @click="toggleChat()">
       <div class="avatar-badge">
         <Badge dot>
@@ -63,11 +65,11 @@
 </template>
 
 <script>
-  import vHead from './components/part/vHead'
-  import vNav from './components/part/vNav'
-  import vFooter from './components/part/vFooter'
-  import vNotice from './components/part/vNotice'
-  import chat from './components/part/chat.js'
+  import vHead from './components/part/vHead' //头部
+  import vNav from './components/part/vNav' //导航
+  import vFooter from './components/part/vFooter' //脚步
+  import vNotice from './components/part/vNotice' //公告
+  import chat from './components/part/chat.js' // 聊天js
 
   export default {
     name: 'App',
@@ -176,7 +178,7 @@
     },
     created() {
       this.getNews('1');
-      // this.scrtop = this.$refs.content.scrollHeight - this.$refs.content.offsetHeight;
+      // this.scrtop = this.$refs.content.scrollHeight - this.$refs.content.offsetHeight;···
       var chats = localStorage.getItem('chats');
       this.chats =JSON.parse(chats);
       console.log(chats);
