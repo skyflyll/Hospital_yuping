@@ -2,9 +2,9 @@
   <vue-seamless :data="notices" :class-option="classOption5" class="scroll-wrap">
     <ul class="ul-item clearfix">
       <li class="li-item" v-for="item in notices">
-        <router-link :to="{path:'/javascript:;'}">
+        <router-link :to="{path:'/news/detail',query:{table:'announcement',id:item._id}}">
           <p>{{item.title}}</p>
-          <p>- - 2018-03-26</p>
+          <p>- - {{item.time}}</p>
         </router-link>
       </li>
     </ul>
@@ -69,7 +69,7 @@
       var params = new URLSearchParams();
       params.append('limit', '5');
       params.append('skip', '0');
-      // params.append('query', JSON.stringify({}));
+      params.append('query', JSON.stringify({"type":"1"}));
       params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
       params.append('collection', 'announcement');
       this.$axios({
@@ -79,10 +79,15 @@
       })
         .then(
           function (res) {
-
-            console.log(res.data.data);
+            // console.log(res);
             that.notices=res.data.data
+            that.notices.map(function (item) {
+              var time = new Date(item.time);
+              item.time=time.toLocaleDateString().replace(/\//g, "-");
 
+              // console.log(item.time)
+            });
+            // console.log(timestamp4.toLocaleDateString().replace(/\//g, "-") + " " + timestamp4.toTimeString().substr(0, 8));
           }
         )
         .catch()
@@ -121,6 +126,9 @@
           color: @color;
           &:hover{
             color: red;
+          }
+          &:visited{
+            /*color: red;*/
           }
           p{
             border: 0;

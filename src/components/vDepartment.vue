@@ -4,16 +4,16 @@
       <router-view/>
     </div>
     <div class="right">
-      <v-right :navIndex="2"></v-right>
+      <v-d-right :navIndex="2"></v-d-right>
     </div>
   </div>
 </template>
 <script>
-import vRight from "./department/vRight";
+import vDRight from "./department/vDRight";
 export default {
   name: "v-basic-profile",
   components: {
-    vRight
+    vDRight
   }
 };
 </script>

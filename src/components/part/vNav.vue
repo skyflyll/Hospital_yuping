@@ -10,10 +10,14 @@
           <div class="nav-list" v-if="item.list">
             <ul>
               <li v-for="i in item.list">
-                <router-link :to="{ path: i.url,}">
+                <router-link v-if="i.filter" :to="{ path: i.url,query:{name:i.filter}}">
+                  {{i.name}}
+                </router-link>
+                <router-link v-else :to="{ path: i.url}">
                   {{i.name}}
                 </router-link>
               </li>
+
             </ul>
           </div>
           <div class="nav-important-list" v-else>
@@ -50,11 +54,93 @@
       toggleNavs: function (index) {
         console.log(index);
         this.navIndex = index;
+      },
+      importantList:function () {
+        // console.log(this.nav);
+        var that =this;
+        this.$axios({
+          method: 'get',
+          url: '/api/getDepartment',
+        })
+          .then(
+            function (res) {
+              // console.log(res.data.data);
+              // res.data.data.name = '科室介绍';
+              res.data.data.map(function (item) {
+                item.show = false;
+              });
+              res.data.data[0].show=true;
+              that.nav[2].importantList = res.data.data;
+            }
+          )
+      },
+      equipment:function () {
+        var that = this;
+        var params = new URLSearchParams();
+        // params.append('limit', '');
+        // params.append('skip', '');
+        params.append('query', JSON.stringify({type:"4"}));
+        params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
+        params.append('collection', 'announcement');
+        this.$axios({
+          method: 'post',
+          url: '/api/query',
+          data: params
+        })
+          .then(
+            function (res) {
+              // console.log(that.nav[5].list);
+              // console.log(res.data.data);
+              res.data.data.map(function (item) {
+                item.name = item.title
+                item.url = '/news/detail?table=announcement&id='+item._id;
+              });
+              that.nav[5].url = '/news/list?table=announcement&type=4'
+              that.nav[5].list = res.data.data
+              // console.log(that.nav[5].list)
 
+              // that.recruits = res.data.data;
+            }
+          )
+          .catch()
+      },
+      Technical:function () {
+        var that = this;
+        var params = new URLSearchParams();
+        // params.append('limit', '');
+        // params.append('skip', '');
+        params.append('query', JSON.stringify({type:"5"}));
+        params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
+        params.append('collection', 'announcement');
+        this.$axios({
+          method: 'post',
+          url: '/api/query',
+          data: params
+        })
+          .then(
+            function (res) {
+              // console.log(that.nav[5].list);
+              // console.log(res.data.data);
+              res.data.data.map(function (item) {
+                item.name = item.title
+                item.url = '/news/detail?table=announcement&id='+item._id;
+              });
+              that.nav[6].url = '/news/list?table=announcement&type=5'
+              that.nav[6].list = res.data.data;
+              // console.log(that.nav[6].list)
+
+              // that.recruits = res.data.data;
+            }
+          )
+          .catch()
       }
     },
-    mounted(){
+    created(){
       this.nav=navData;
+      this.importantList();
+      this.equipment();
+      this.Technical();
+      // console.log(this.nav)
     }
 
   }

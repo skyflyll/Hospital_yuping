@@ -2,20 +2,20 @@
   <div class="expert">
     <div class="expert-head">
       <h2>专家介绍</h2>
-      <span><a href="javascript:;">更多 >></a></span>
+      <span><router-link :to="{path:'/zhuanjia'}">更多 >></router-link></span>
     </div>
     <div class="expert-content">
       <vue-seamless :data="exports" :class-option="classOption5" class="scroll-wrap">
         <div class="expert-wrap" v-for="item in exports">
-          <img :src="item.url" alt="img">
+          <img :src="item.src" alt="img">
           <div class="expert-introduce">
             <p><strong>姓名: </strong>{{item.name}}</p>
             <p><strong>科室: </strong>{{item.department}}</p>
             <p><strong>职务: </strong>{{item.position}}</p>
             <p><strong>职称: </strong>{{item.title}}</p>
             <div class="btn">
-              <a href=""><Button type="primary" size="small">{{item.introduce}}</Button></a>
-              <a href=""><Button type="primary" size="small">{{item.out}}</Button></a>
+              <Button type="info" size="small"><router-link :to="{path:'/zhuanjia/detail',query:{id:item._id}}">介绍</router-link></Button>
+             <Button type="info" size="small"><router-link :to="{path:'/zhuanjia/detail',query:{id:item._id}}">出诊信息</router-link></Button>
             </div>
           </div>
         </div>
@@ -23,7 +23,6 @@
     </div>
   </div>
 </template>
-
 <script>
   import vueSeamless from 'vue-seamless-scroll'
   export default {
@@ -80,6 +79,40 @@
           },
         ]
       }
+    },
+    methods:{
+      getNews: function () {
+        var that = this;
+        var params = new URLSearchParams();
+        params.append('limit', '4');
+        params.append('skip', '0');
+        params.append('query', JSON.stringify({type:"1"}));
+        params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
+        params.append('collection', 'person');
+        this.$axios({
+          method: 'post',
+          url: '/api/query',
+          data: params
+        })
+          .then(
+            function (res) {
+              // console.log(res);
+              // that.recruits = res.data.data;
+
+              res.data.data.map(function (item) {
+                // console.log(item)
+                if(item.src){
+                  item.src = item.src.replace("wwwroot","http://localhost:8088")
+                }
+              });
+              that.exports= res.data.data;
+            }
+          )
+          .catch()
+      }
+    },
+    created(){
+      this.getNews()
     }
   }
 </script>
@@ -98,8 +131,8 @@
     width: 1000px;
     margin: 0 auto;
     min-height: 230px;
-    margin-top: 20px;
-    border: 1px solid @light;
+    margin-top: 5px;
+    margin-bottom: 20px;
     .expert-head{
       width: 100%;
       height: 38px;
@@ -146,11 +179,13 @@
     .expert-content{
       width: 100%;
       min-height: 180px;
-      margin-top: 5px;
-      border-bottom: 0;
+      /*border-bottom: 0;*/
+      padding-top: 5px;
+      border: 2px solid @shadow;
+      border-top: 1px solid @light;
       .scroll-wrap{
         margin: 10px 0;
-        width: 998px;
+        width: 996px;
         overflow: hidden;
         .expert-wrap{
           width: 243px;
@@ -173,7 +208,7 @@
           img{
             display: block;
             width: 100px;
-            height: 151px;
+            height: 140px;
             background: @border;
             float: left;
             margin-top: 15px;
@@ -190,8 +225,13 @@
             padding-top: 18px;
             color: @content;
             p{
-              font-size: 14px;
+              font-size: 13px;
               margin: 5px;
+              width: 130px;
+              height: 21px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
               &:hover{
                 color: red;
                 cursor: pointer;
@@ -200,17 +240,25 @@
             .btn{
               width: 100%;
               margin-top: 12px;
-              a{
+              button{
                 float: left;
-                display: block;
-                padding: 0;
+                display: inline-block;
                 margin: 0;
-                font-size: 14px;
+                font-size: 13px;
+                padding: 0 5px;
+                span{
+                  a{
+                    color: #fff;
+                    font-size: 13px;
+                  }
+                }
                 &:first-child{
-                  width: 50px;
+                  /*width: 50px;*/
+                  margin-left: 5px;
                 }
                 &:last-child{
-                  width: 80px;
+                  /*width: 80px;*/
+                  margin-left: 8px;
                 }
               }
             }

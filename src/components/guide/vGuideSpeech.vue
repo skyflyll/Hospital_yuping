@@ -1,9 +1,7 @@
 <template>
   <div class="container clearfix">
     <div class="leaderHead">
-      <!--<span>{{articl.name}}</span>-->
-      <!--<span>{{articl.position}}</span>-->
-      <span>院长致辞</span>
+      <span>{{articl.title}}</span>
     </div>
     <div class="leaderList">
         <!--<div class="leader-img clearfix">-->
@@ -11,23 +9,26 @@
         <!--</div>-->
       <!--<div class="line" v-if="articl.src"></div>-->
       <p v-html="articl.content"></p>
+
     </div>
   </div>
 </template>
 
 <script>
+
     export default {
-      name: "vleader-speech",
+      name: "v-guide-speech",
       data(){
         return{
+          title:'',
           articl:{}
         }
       },
       methods:{
-        getArticl:function () {
+        getArticl:function (title) {
           var that = this;
           var params = new URLSearchParams();
-          params.append('query', JSON.stringify({title:"院长致词"}));
+          params.append('query', JSON.stringify({title:title}));
           params.append('projection', JSON.stringify({"projection": {}}));
           params.append('collection', 'special');
           this.$axios({
@@ -37,22 +38,35 @@
           })
             .then(
               function (res) {
-                // console.log(res);
-                // var n = /[\n]+/g;
-                // var space =  /\s/g;
-                // res.data.data.content= res.data.data.content.replace(n,'<br/>');
-                // res.data.data.content= res.data.data.content.replace(space,'&nbsp;');
+                console.log(res);
                 that.articl = res.data.data;
-                that.articl.src = that.articl.src.replace("wwwroot","http://localhost:8088")
               }
             )
             .catch()
         }
       },
+      watch:{
+        '$route':function () {
+          var name = decodeURI(window.location.search,"UTF-8");
+          name = name.replace("?name=","");
+          console.log(name);
+          if(name ==''){
+            name = '住院须知'
+          }
+          this.title = name;
+          this.getArticl(this.title);
+        }
+      },
       created(){
-        this.getArticl();
+        var name = decodeURI(window.location.search,"UTF-8");
+            name = name.replace("?name=","");
+            console.log(name);
+            if(name ==''){
+              name = '住院须知'
+            }
+            this.title = name;
+        this.getArticl(this.title);
       }
-
     }
 </script>
 
@@ -95,6 +109,7 @@
     }
     .leaderList {
       width: 100%;
+      overflow: hidden;
       .leader-img{
         width: 100%;
         /*height: 206px;*/

@@ -3,16 +3,16 @@
     <div class="party-wrap">
       <div class="party-head">
         <h2>建党园地</h2>
-        <span><a href="javascript:;">更多 >></a></span>
+        <span><router-link :to="{path:'/news/list?table=announcement&type=7'}">更多 >></router-link></span>
       </div>
       <div class="party-content">
         <vue-seamless :data="partys" :class-option="classOption5" class="scroll-wrap">
           <ul class="ul-item clearfix">
             <li class="li-item" v-for="item in partys">
-              <a :href="item.href">
+              <router-link :to="{ path: '/news/detail',query:{table:'announcement',id:item._id}}">
                 <img :src="item.img" alt="">
                 <p>{{item.title}}</p>
-              </a>
+              </router-link>
             </li>
           </ul>
         </vue-seamless>
@@ -27,25 +27,25 @@
           {{item}}
         </li>
         <div class="div-tab" v-show="nowIndex===0">
-          <a href="">更多 >></a>
+          <router-link :to="{path:'/news/list',query:{table:'announcement',type:10}}">更多 >></router-link>
           <ul>
-            <li v-for="item in xinsheng"><a href="">
+            <li v-for="item in xinsheng"><router-link :to="{ path: '/news/detail',query:{table:'announcement',id:item._id}}">
               <span>{{item.title}}</span>
               <span>{{item.time}}</span>
-            </a></li>
+            </router-link></li>
           </ul>
         </div>
         <div class="div-tab" v-show="nowIndex===1">
-          <a href="">更多 >></a>
+          <router-link :to="{path:'/news/list',query:{table:'announcement',type:9}}">更多 >></router-link>
           <ul>
-            <li v-for="item in homes"><a href="">
+            <li v-for="item in homes"><router-link :to="{ path: '/news/detail',query:{table:'announcement',id:item._id}}">
               <span>{{item.title}}</span>
               <span>{{item.time}}</span>
-            </a></li>
+            </router-link></li>
           </ul>
         </div>
         <div class="div-tab" v-show="nowIndex===2">
-          <a href="">更多 >></a>
+          <a href="javascript:;">更多 >></a>
           <ul>
             <li v-for="item in works"><a href="">
               <span>{{item.title}}</span>
@@ -199,12 +199,75 @@
     methods: {
       toggleTabs: function (index) {
         this.nowIndex = index
+      },
+      getList:function (limit,skip,type,table) {
+        var that = this;
+        var params = new URLSearchParams();
+        params.append('limit', limit);
+        params.append('skip', skip);
+        params.append('query', JSON.stringify({type:type}));
+        params.append('projection', JSON.stringify({"projection": {}}));
+        params.append('collection', table);
+        this.$axios({
+          method: 'post',
+          url:'/api/query',
+          data:params
+        })
+          .then(
+            function (res) {
+              // console.log(res);
+              res.data.data.map(function (item) {
+                var imgs=item.content.match(/<img[^>]+>/g)
+                // var img1="http://localhost:8088"+imgs[0].replace('<img src="','').replace('">','');
+                var host="http://localhost:8088";
+                var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+                var img1=host+imgs[0].match(srcReg)[1];
+                // console.log(img1);
+                item.img=img1;
+              })
+              that.partys = res.data.data;
+              // console.log(res.data.data)
+
+            }
+          )
+          .catch()
+      },
+      getNews: function (limit,skip,type,table) {
+        var that = this;
+        var params = new URLSearchParams();
+        params.append('limit', limit);
+        params.append('skip', skip);
+        params.append('query', JSON.stringify({type:type}));
+        params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
+        params.append('collection', table);
+        this.$axios({
+          method: 'post',
+          url: '/api/query',
+          data: params
+        })
+          .then(
+            function (res) {
+              // console.log(res);
+              res.data.data.map(function (item) {
+                // 将时间格式化你
+                var time = new Date(item.time);
+                item.time = time.toLocaleDateString().replace(/\//g, "-");
+                item.title = item.title+'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ';
+              });
+              if(type==='9'){
+                that.homes = res.data.data;
+              }else if(type==='10'){
+                that.xinsheng = res.data.data;
+              }
+            }
+          )
+          .catch()
       }
     },
     computed: {
       classOption5() {
         return {
-          limitMoveNum: 8,
+          limitMoveNum: 4,
           direction: 2,
           step: 0.5,
           hoverStop: true,
@@ -212,6 +275,11 @@
         }
       },
     },
+    created(){
+      this.getList('4','0','7','announcement');
+      this.getNews('6','0','9','announcement');
+      this.getNews('6','0','10','announcement');
+    }
   }
 </script>
 
@@ -236,7 +304,6 @@
       width: 622px;
       height: 300px;
       float: left;
-      border: 1px solid @light;
       .party-head {
         width: 100%;
         height: 38px;
@@ -282,6 +349,8 @@
       }
       .party-content {
         width: 100%;
+        border: 1px solid @light;
+        padding-bottom: 10px;
         .scroll-wrap {
           width: 620px;
           height: 250px;
@@ -290,7 +359,7 @@
             list-style: none;
             margin: 0;
             padding: 0;
-            width: 1640px;
+            width: 820px;
             .li-item {
               float: left;
               width: 200px;
@@ -372,7 +441,7 @@
         }
         .div-tab {
           width: 370px;
-          min-height: 200px;
+          height: 262px;
           position: relative;
           padding-bottom: 18px;
           border: 1px solid @light;

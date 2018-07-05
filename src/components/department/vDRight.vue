@@ -1,78 +1,53 @@
 <template>
   <div class="container clearfix">
       <h1><Icon type="android-apps"></Icon>{{rightList.name}}</h1>
-      <ul class="clearfix liiter-head" v-for="(item,index) in rightList.importantList" :key="index">
+      <ul class="clearfix liiter-head" v-for="(item,index) in rightList" :key="index">
           <li class="head-wrap">
-            <div class="head" @click="changeTab(index)"><Icon type="plus-round"></Icon>{{item.name}}</div>
-            <transition  name="fade">
-              <!--<div v-if="isActive===index">hhhhh</div>-->
-            <ul class="tow-head"
-                v-if="isActive===index"
-                v-bind:class="{ active: isActive===index }">
-                <li v-for="(i,index) in item.importDetails" :key="index" class="head-wrap">
+            <div class="head" @click="toggle(index)"><Icon type="plus-round"></Icon>{{item.name}}</div>
+            <ul class="tow-head" v-if="item.show">
+                <li v-for="i in item.importDetails" class="head-wrap">
                   <router-link :to="{path:'/keshi/class',query:{name:i.name}}"><Icon type="plus-round"></Icon>{{i.name}}</router-link>
                 </li>
             </ul>
-            </transition>
           </li>
       </ul>
   </div>
 </template>
 <script>
-  import leftData from "../part/navList.json"
 export default {
-  name: "v-right",
-  props:{navIndex:Number},
+  name: "v-d-right",
   data() {
     return {
       isActive:0,
-      rightList: [
-        {
-          name: "测试测试",
-          item: [
-            {
-              url: "/gaikuang/lindao",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "/gaikuang/",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            }
-          ]
-        }
-      ]
+      rightList: []
     };
   },
-  methods:{
-    changeTab:function (index) {
-      this.isActive =index;
+  methods: {
+    getArticl: function () {
+      var that =this;
+      this.$axios({
+        method: 'get',
+        url: '/api/getDepartment',
+      })
+        .then(
+          function (res) {
+            // console.log(res.data.data);
+            res.data.data.name = '科室介绍';
+            res.data.data.map(function (item) {
+              item.show = false;
+            });
+            res.data.data[0].show=true;
+            that.rightList = res.data.data;
+          }
+        )
+    },
+    toggle:function (index) {
+      this.rightList[index].show =!this.rightList[index].show;
     }
   },
   created() {
-    this.rightList =leftData[this.navIndex];
-    console.log(this.rightList);
-    console.log(leftData[this.navIndex])
-  }
+    this.getArticl();
+  },
 };
 </script>
 
@@ -92,17 +67,6 @@ export default {
   display: block;
   clear: both;
 }
-.active{
-  display: block !important;
-}
-.fade-enter-active, .fade-leave-active {
-  transition: height 1s ease-in-out;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  /*opacity: 0;*/
-  height: 0;
-}
-
 
 .container {
   width: 220px;
@@ -122,7 +86,9 @@ export default {
   }
   .liiter-head{
     list-style: none;
-    border: 1px dashed @light;
+    //border: 1px dashed @light;
+    border-left: 1px dashed @light;
+    border-right: 1px dashed @light;
     border-top:0;
     .head-wrap{
       line-height: 45px;
@@ -135,10 +101,12 @@ export default {
         height: 45px;
         width: 100%;
         padding-left: 10px;
-        border-bottom: 1px solid @bgc;
+        border-bottom: 2px solid @shadow;
+        border-top: 2px solid @shadow;
         background-image: url("../../assets/headBg.jpg");
         color: @primary;
         cursor: pointer;
+        box-shadow: 0px -5px 15px @shadow inset;
         i{
           padding-right: 5px;
           color: red;
@@ -149,7 +117,7 @@ export default {
         box-shadow: 0 -2px 8px @shadow inset;
       }
       .tow-head{
-        display: none;
+        display: block;
         .head-wrap{
           text-align: left;
           padding-left: 15px;

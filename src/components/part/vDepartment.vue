@@ -2,14 +2,14 @@
   <div class="department">
     <div class="department-head">
       <h2>科室介绍</h2>
-      <span><a href="javascript:;">所有科室 >></a></span>
+      <span><router-link :to="{path:'/keshi/list'}">所有科室 >></router-link></span>
     </div>
     <div class="department-content">
       <div class="department-wrap clearfix" v-for="item in departments">
         <a :href="item.href" class="clearfix"><h1>{{item.name}}</h1></a>
         <div class="content-wrap">
           <span v-for="i in item.importDetails">
-          <a :href="i.url"><Icon type="plus-round"></Icon> {{i.name}}</a>
+          <router-link :to="{path:'/keshi/class',query:{name:i.name}}"><Icon type="plus-round"></Icon> {{i.name}}</router-link>
             </span>
         </div>
       </div>
@@ -253,6 +253,29 @@
           }
         ]
       }
+    },
+    methods:{
+      getArticl: function () {
+        var that =this;
+        this.$axios({
+          method: 'get',
+          url: '/api/getDepartment',
+        })
+          .then(
+            function (res) {
+              // console.log(res.data.data);
+              res.data.data.name = '科室介绍';
+              res.data.data.map(function (item) {
+                item.show = false;
+              });
+              res.data.data[0].show=true;
+              that.departments = res.data.data;
+            }
+          )
+      }
+    },
+    created(){
+      this.getArticl();
     }
   }
 </script>
@@ -275,7 +298,7 @@
   .department {
     width: 1000px;
     margin: 18px auto;
-    min-height: 390px;
+    min-height: 190px;
     .department-head {
       width: 100%;
       height: 38px;
@@ -320,7 +343,7 @@
     }
     .department-content {
       width: 100%;
-      min-height: 360px;
+      min-height: 160px;
       margin-top: 5px;
       padding-bottom: 5px;
       .department-wrap {

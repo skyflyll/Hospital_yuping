@@ -2,8 +2,8 @@
   <div class="main">
     <!--<v-notice></v-notice>-->
     <v-swipt></v-swipt>
-    <v-news></v-news>
     <v-expert></v-expert>
+    <v-news></v-news>
     <v-department></v-department>
     <v-information></v-information>
     <v-party-center></v-party-center>

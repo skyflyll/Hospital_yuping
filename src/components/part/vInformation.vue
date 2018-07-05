@@ -3,35 +3,32 @@
 
     <div class="recruit">
       <div class="recruit-head">
-        <h2>招聘信息</h2>
-        <span><a href="javascript:;">更多 >></a></span>
+        <h2>人才招聘</h2>
+        <span><router-link :to="{path:'/news/list',query:{table:'announcement',type:3}}">更多 >></router-link></span>
       </div>
       <div class="recruit-content">
         <ul>
           <li v-for="item in recruits">
-            <a href="javascript:;">
+            <router-link :to="{ path: '/news/detail',query:{table:'announcement',id:item._id}}">
               <span>{{item.title}}</span>
-              <span>- - -</span>
               <span>{{item.time}}</span>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
     </div>
-
     <div class="lecture">
       <div class="lecture-head">
         <h2>健康讲座</h2>
-        <span><a href="javascript:;">更多 >></a></span>
+        <span><router-link :to="{path:'/news/list',query:{table:'announcement',type:11}}">更多 >></router-link></span>
       </div>
       <div class="lecture-content">
         <ul>
           <li v-for="item in lectures">
-            <a href="javascript:;">
+            <router-link :to="{ path: '/news/detail',query:{table:'announcement',id:item._id}}">
               <span>{{item.title}}</span>
-              <span>- - -</span>
               <span>{{item.time}}</span>
-            </a>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -110,24 +107,55 @@
         ]
       }
     },
+    methods:{
+      getNews: function (limit,skip,type,table) {
+        var that = this;
+        var params = new URLSearchParams();
+        params.append('limit', limit);
+        params.append('skip', skip);
+        params.append('query', JSON.stringify({type:type}));
+        params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
+        params.append('collection', table);
+        this.$axios({
+          method: 'post',
+          url: '/api/query',
+          data: params
+        })
+          .then(
+            function (res) {
+              // console.log(res);
+              // that.recruits = res.data.data;
+
+              res.data.data.map(function (item) {
+                // 将时间格式化你
+                var time = new Date(item.time);
+                item.time = time.toLocaleDateString().replace(/\//g, "-");
+                item.title = item.title+'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ';
+                //内容格式化
+                // item.content = item.content.replace(/(\n)/g, "");
+                // item.content = item.content.replace(/(\t)/g, "");
+                // item.content = item.content.replace(/(\r)/g, "");
+                // item.content = item.content.replace(/<\/?[^>]*>/g, "");
+                // item.content = item.content.replace(/\s*/g, "");
+                // item.content = item.content.replace(/&nbsp;*/g, "");
+                // console.log(item.content)
+                // console.log(item.time)
+              });
+              if(type==='3'){
+                that.recruits = res.data.data;
+              }else if(type==='11'){
+                that.lectures = res.data.data;
+              }
+              // console.log(that.recruits)
+              // console.log(timestamp4.toLocaleDateString().replace(/\//g, "-") + " " + timestamp4.toTimeString().substr(0, 8));
+            }
+          )
+          .catch()
+      }
+    },
     created() {
-      var params = new URLSearchParams();
-      params.append('limit', '20');
-      params.append('skip', '0');
-      // params.append('query', JSON.stringify({}));
-      params.append('projection', JSON.stringify({"projection": {}}));
-      params.append('collection', 'leadership');
-      this.$axios({
-        method: 'post',
-        url: '/api/query',
-        data: params
-      })
-        .then(
-          function (res) {
-            console.log(res)
-          }
-        )
-        .catch()
+      this.getNews('6','0','3','announcement');
+      this.getNews('6','0','11','announcement');
     }
   }
 </script>
@@ -193,9 +221,11 @@
 
   .content {
     min-height: 250px;
+    border: 1px solid @light;
     ul {
       list-style: none;
       li {
+        padding-top: 10px;
         height: 38px;
         line-height: 38px;
         a {
@@ -208,23 +238,24 @@
           span {
             display: block;
             float: left;
-            height: 38px;
-            line-height: 38px;
+            height: 30px;
+            line-height: 30px;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            background: @bgc;
             &:first-child {
-              width: 320px;
+              float: left;
+              width: 80%;
               padding-left: 10px;
-              padding-right: 10px;
-              margin-right: 10px;
-            }
-            &:nth-child(2) {
-              width: 60px;
+              /*padding-right: 10px;*/
+              /*margin-right: 10px;*/
             }
             &:last-child {
+              width: 20%;
               text-align: center;
-              width: 95px;
+              float: right;
+              /*width: 95px;*/
             }
           }
         }
@@ -243,7 +274,6 @@
       width: 495px;
       min-height: 250px;
       box-sizing: border-box;
-      border: 1px solid @light;
       float: left;
       .recruit-head {
         .header
@@ -256,7 +286,6 @@
       width: 495px;
       min-height: 250px;
       box-sizing: border-box;
-      border: 1px solid @light;
       float: right;
       .lecture-head {
         .header

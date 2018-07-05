@@ -12,50 +12,71 @@
 <script>
   import leftData from "../part/navList.json"
 export default {
-  name: "v-right",
+  name: "v-n-right",
   props:{navIndex:Number},
   data() {
     return {
-      rightList: [
+      rightList:
         {
-          name: "测试测试",
-          item: [
+          name: "新闻中心",
+          list: [
             {
-              url: "/gaikuang/lindao",
-              title: "哈哈哈哈或或或"
+              url: "/news/list?table=announcement&type=2",
+              name: "医院动态"
             },
             {
-              url: "/gaikuang/",
-              title: "哈哈哈哈或或或"
+              url: "/news/list?table=announcement&type=3",
+              name: "人才招聘"
             },
             {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
+              url: "/news/list?table=announcement&type=1",
+              name: "新闻公告"
             },
             {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
+              url: "/news/list?table=announcement&type=4",
+              name: "医疗设备"
             },
             {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
+              url: "/news/list?table=announcement&type=5",
+              name: "新技术、项目"
+            },{
+              url: "/news/list?table=announcement&type=6",
+              name: "政策法规"
             },
             {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
+              url: "/news/list?table=announcement&type=7",
+              name: "建党园地"
+            },{
+              url: "/news/list?table=announcement&type=8",
+              name: "医院荣誉"
             },
             {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
+              url: "/news/list?table=announcement&type=11",
+              name: "健康讲座"
+            },{
+              url: "/news/list?table=announcement&type=9",
+              name: "职工之家"
+            },{
+              url: "/news/list?table=announcement&type=10",
+              name: "患者心声"
             }
-          ]
+            ]
         }
-      ]
-    };
+    }
+  },
+  watch:{
+    '$route': function () {
+      // var serch = this.urlArgs(window.location.search);
+      // this.getArticl(serch.id, serch.table);
+      // console.log($router)
+      // this.router.go(window.location)
+
+    }
   },
   created() {
-    this.rightList =leftData[this.navIndex];
-    console.log(leftData[this.navIndex])
+    // this.rightList =this.rightList;
+    // console.log(leftData[this.navIndex])
+    console.log(this.rightList)
   }
 };
 </script>
@@ -101,7 +122,8 @@ export default {
       line-height: 45px;
       width: 218px;
       display: block;
-      text-align: center;
+      text-align: left;
+      padding-left: 20px;
       border-bottom: 1px solid @bgc;
       background-image: url("../../assets/headBg.jpg");
       &:hover{

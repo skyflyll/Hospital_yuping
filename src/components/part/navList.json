@@ -31,7 +31,7 @@
     ]
   },
   {
-    "url": "/keshi",
+    "url": "/keshi/list",
     "name": "科室介绍",
     "importantList": [
       {
@@ -264,36 +264,15 @@
     ]
   },
   {
-    "url": "/javascript:;",
+    "url": "/news/list?table=announcement&type=8",
     "name": "医院荣誉",
     "list": [
-      {
-        "url": "/javascript:;",
-        "name": "集体荣誉"
-      },
-      {
-        "url": "/javascript:;",
-        "name": "个人荣誉"
-      },
-      {
-        "url": "/javascript:;",
-        "name": "荣誉墙"
-      }
     ]
   },
   {
-    "url": "/javascript:;",
+    "url": "/zhuanjia",
     "name": "专家团队",
-    "list": [
-      {
-        "url": "/javascript:;",
-        "name": "专家预约"
-      },
-      {
-        "url": "/javascript:;",
-        "name": "专家简历"
-      }
-    ]
+    "list": []
   },
   {
     "url": "/javascript:;",
@@ -340,58 +319,54 @@
     ]
   },
   {
-    "url": "/javascript:;",
+    "url": "/yisheng/list",
     "name": "医护天地",
     "list": [
       {
-        "url": "/javascript:;",
+        "url": "/yisheng/list",
         "name": "医生介绍"
       },
       {
-        "url": "/javascript:;",
+        "url": "/hushi/list",
         "name": "护士介绍"
       }
     ]
   },
   {
-    "url": "/javascript:;",
+    "url": "/zhinan/list",
     "name": "就医指南",
-    "list":
-    [
+    "list": [
       {
-        "url": "/javascript:;",
-        "name": "门诊就医流程"
+        "url": "/zhinan/list",
+        "name": "就诊须知",
+        "filter":"就诊须知"
       },
       {
-        "url": "/javascript:;",
-        "name": "急诊就医流程"
+        "url": "/zhinan/list",
+        "name": "住院须知",
+        "filter": "住院须知"
       },
       {
-        "url": "/javascript:;",
-        "name": "医院平面图"
+        "url": "/zhinan/list",
+        "name": "挂号须知",
+        "filter": "挂号须知"
       },
       {
-        "url": "/javascript:;",
-        "name": "住院须知"
+        "url": "/zhinan/list",
+        "name": "取药须知",
+        "filter": "取药须知"
+
       },
       {
-        "url": "/javascript:;",
-        "name": "出院须知"
-      },
-      {
-        "url": "/javascript:;",
-        "name": "门诊查询"
-      },
-      {
-        "url": "/javascript:;",
-        "name": "医院楼层分布"
+        "url": "/zhinan/list",
+        "name": "联系我们",
+        "filter": "联系我们"
       }
     ]
   },
   {
     "url": "/javascript:;",
     "name": "门诊安排",
-    "list":
-    []
+    "list": []
   }
 ]

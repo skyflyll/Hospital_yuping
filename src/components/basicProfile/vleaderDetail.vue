@@ -6,7 +6,7 @@
     </div>
     <div class="leaderList">
         <div class="leader-img clearfix">
-          <img src="../../assets/logo.png" alt="">
+          <img :src="articl.src" alt="">
         </div>
       <div class="line"></div>
       <p v-html="articl.detail"></p>
@@ -41,6 +41,9 @@
                 res.data.data.detail= res.data.data.detail.replace(n,'<br/>');
                 res.data.data.detail= res.data.data.detail.replace(space,'&nbsp;');
                 that.articl = res.data.data;
+                //http://localhost:8088/tmp/7e79fc29925d3eb939922c95c3b42955.jpeg
+                that.articl.src = that.articl.src.replace("wwwroot","http://localhost:8088")
+                // console.log(that.articl.src)
               }
             )
             .catch()
@@ -92,6 +95,7 @@
     }
     .leaderList {
       width: 100%;
+      overflow: hidden;
       .leader-img{
         width: 142px;
         height: 206px;

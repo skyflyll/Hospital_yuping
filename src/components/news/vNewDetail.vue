@@ -1,14 +1,11 @@
 <template>
   <div class="container clearfix">
     <div class="leaderHead">
-      <span>{{articl.name}}</span>
-      <!--<span>{{articl.position}}</span>-->
+      <span><strong>标题：</strong>{{articl.title}}</span>
+      <span><span>时间：</span>{{articl.time}}</span>
     </div>
     <div class="leaderList">
-      <div class="leader-img clearfix" v-if="articl.src">
-        <img :src="articl.src" alt="">
-      </div>
-      <div class="line" v-if="articl.src"></div>
+      <!--<div class="line"></div>-->
       <p v-html="articl.content"></p>
     </div>
   </div>
@@ -16,19 +13,35 @@
 
 <script>
   export default {
-    name: "v-department-detail",
+    name: "v-new-detail",
     data() {
       return {
         articl: {}
       }
     },
     methods: {
-      getArticl: function (name) {
+      urlArgs: function () {
+        var args = {};
+        var query = location.search.substring(1);
+        var pairs = query.split("&");
+        for (var i = 0; i < pairs.length; i++) {
+          var pos = pairs[i].indexOf("=");
+          if (pos == -1) {
+            continue;
+          }
+          var name = pairs[i].substring(0, pos);
+          console.log(name);
+          var value = pairs[i].substring(pos + 1);
+          args[name] = value;
+        }
+        return args;
+      },
+      getArticl: function (id, table) {
         var that = this;
         var params = new URLSearchParams();
-        params.append('query', JSON.stringify({name: name}));
+        params.append('query', JSON.stringify({_id: id}));
         params.append('projection', JSON.stringify({"projection": {}}));
-        params.append('collection', 'department');
+        params.append('collection', table);
         this.$axios({
           method: 'post',
           url: '/api/select',
@@ -36,30 +49,29 @@
         })
           .then(
             function (res) {
-              console.log(res)
-              if(res.data.data.src ){
-                res.data.data.src = res.data.data.src.replace('wwwroot','http://localhost:8088');
-              }
+              console.log(res);
+              var time = new Date(res.data.data.time);
+              res.data.data.time = time.toLocaleDateString().replace(/\//g, "-");
               that.articl = res.data.data;
+              console.log(that.articl)
             }
           )
           .catch()
       }
     },
-    created() {
-      var name = decodeURI(window.location.search, 'UTF-8')
-      name = name.replace('?name=', '');
-      this.getArticl(name);
-    },
     watch: {
       //监听路由的变化
       '$route': function () {
-        var name = decodeURI(window.location.search, 'UTF-8')
-        name = name.replace('?name=', '');
-        console.log(name)
-        this.getArticl(name);
+        console.log('hhhhhhhhhhhhhhhhhh')
+        var serch = this.urlArgs(window.location.search);
+        this.getArticl(serch.id, serch.table);
       }
-    }
+    },
+    created() {
+      console.log(window.location.search);
+      var serch = this.urlArgs(window.location.search);
+      this.getArticl(serch.id, serch.table);
+    },
 
   }
 </script>
@@ -90,14 +102,20 @@
       text-align: center;
       width: 100%;
       height: 80px;
-      border-bottom: 1px solid @shadow;
+      border-bottom: 1px solid red;
       vertical-align: bottom;
       padding-top: 38px;
       color: red;
       span {
-        font-size: 18px;
+        font-size: 16px;
+        &:first-child {
+          strong {
+            font-size: 16px;
+          }
+        }
         &:last-child {
-          color: red;
+          color: @content;
+          font-size: 13px;
         }
       }
     }
@@ -105,12 +123,13 @@
       width: 100%;
       overflow: hidden;
       .leader-img {
-        width: 100%;
-        /*height: 206px;*/
+        width: 142px;
+        height: 206px;
         margin: 0 auto;
         margin-top: 20px;
         img {
-          width: 100%;
+          width: 142px;
+          height: 206px;
           border: 3px solid @shadow;
           &:hover {
             box-shadow: 5px 5px 8px @shadow;

@@ -7,7 +7,7 @@
       <ul>
         <li v-for="(item,index) in details" :key="index">
           <router-link :to="{ path: 'lindao/xaingqing',query:{id:item._id}}" :props="item">
-            <img src="../../assets/logo.png" alt="">
+            <img :src="item.src" alt="">
             <div class="leader-detail">
               <div class="detail-head">
                 <p class="name">{{item.name}}</p>
@@ -20,7 +20,7 @@
       </ul>
       <router-view></router-view>
     </div>
-    <Page :total="12" :page-size="limit" @on-change="upGetList"  show-elevator class="page"></Page>
+    <Page :total="count" :page-size="limit" @on-change="upGetList"  show-elevator class="page"></Page>
   </div>
 </template>
 <script>
@@ -46,6 +46,7 @@ export default {
         item.detail= item.detail.replace(rgx,'');
         item.detail= item.detail.replace(space,'');
         // console.log(item.detail)
+        item.src = item.src.replace("wwwroot","http://localhost:8088");
         item.detail=item.detail.substr(1,130)+"......"
       });
       return data;
@@ -69,7 +70,9 @@ export default {
             that.count = res.data.count;
             // that.details=res.data.data;
             that.details=that.getLength(res.data.data);
-            // console.log(that.details)
+            //["0"].src
+            console.log(that.details)
+
           }
         )
         .catch()

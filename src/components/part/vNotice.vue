@@ -42,6 +42,7 @@
       },
       updateTime: function () {
         var today = new Date();
+        // console.log(today)
         this.year = this.zeroPadding(today.getFullYear(), 4);
         this.month = this.zeroPadding(today.getMonth() + 1, 2);
         this.date = this.zeroPadding(today.getDate(), 2);
@@ -99,7 +100,6 @@
         height: 38px;
         line-height: 38px;
         border-right: 1px solid @border;
-
       }
     }
     .time-wrap {
