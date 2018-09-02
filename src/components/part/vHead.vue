@@ -7,6 +7,7 @@
             <a href="javascript:;" @click="modalLogin = true;">
               <span @click="showLogin">登录</span>
             </a>
+            <!-- 用户登录 -->
             <Modal v-model="modalLogin" width="500px">
               <p slot="header" style="color:#2d8cf0;text-align:center;font-size: 18px">
                 <span>用户登录</span>
@@ -28,12 +29,12 @@
                       </FormItem>
                       </Col>
                       <Col span="11">
-                      <img @click="changeCode" :src="code" alt="dddd">
+                      <img @click="changeCode" :src="code" alt="abcde">
                       </Col>
                     </Row>
                     <!--<Input v-model="formLogin.code" placeholder="输入密码"></Input>-->
                   </FormItem>
-                  <Button type="primary" @click="handleLogin('formLogin')">立即注册</Button>
+                  <Button type="primary" @click="handleLogin('formLogin')">登录</Button>
                   <Button type="ghost" @click="handleReset('formLogin')" style="margin-left: 8px">重置</Button>
                 </Form>
               </div>
@@ -45,6 +46,7 @@
               </div>
             </Modal>
             &nbsp;
+            <!-- 用户注册 -->
             <a href="javascript:;" @click="modalSign = true">
               注册
             </a>
@@ -87,6 +89,12 @@
                   <FormItem label="手机号：" prop="phone">
                     <Input v-model="formBack.phone" placeholder="输入用户名/手机号"></Input>
                   </FormItem>
+                  <FormItem label="验证码：" prop="phoneCode">
+                    <Input v-model="formBack.phoneCode" placeholder="请输入6位验证码">
+                      <Button v-if="timerNumber==false" slot="append" @click="timePhoneNumber">获取验证码</Button>
+                      <Button v-else slot="append" disabled>{{timerNumber}}秒后重新获取</Button>
+                    </Input>
+                  </FormItem>
                   <FormItem label="新密码：" prop="password">
                     <Input v-model="formBack.password" type="password" placeholder="新密码"></Input>
                   </FormItem>
@@ -108,7 +116,12 @@
           <li v-else>
             <a href="javascript:;">
               <Icon type="person-add"></Icon>&nbsp;&nbsp;{{userName}}</a>
-            <a href="javascript:;" @click="loginOut">注销</a>
+            <a href="javascript:;" @click="loginOut=true">注销</a>
+              <Modal v-model="loginOut" width="500px"
+              @on-ok="ok"
+              @on-cancel="cancel">
+                <p style="text-align:center;margin:20px 0;font-size:16px">您确定要退出登录？</p>
+            </Modal>
           </li>
           <li>
             <router-link :to="{path:'/news/list',query:{table:'announcement',type:3}}">人才招聘</router-link>
@@ -143,27 +156,32 @@
     props: '',
     data() {
       return {
+        // 初始化
         userName: 'false',
         modalLogin: false,
         modalSign: false,
         modalBack: false,
+        loginOut: false,
+        timerNumber:false,
         code: '',
         formSign: {
           name: '',
+          phone: '',
           password: '',
           rpassword: '',
-          phone: '',
         },
         formLogin: {
-          password: '',
           phone: '',
+          password: '',
           code: ''
         },
         formBack: {
-          password: '',
           phone: '',
+          password: '',
           rpassword: '',
+          phoneCode:''
         },
+        // 验证规则
         ruleValidate: {
           name: [
             {required: true, message: '请输入用户名', trigger: 'blur'},
@@ -196,6 +214,15 @@
               message: '请正确输入5个验证码',
               trigger: 'blur'
             },
+          ],
+          phoneCode: [
+            {required: true, message: '请输入6位手机验证码', trigger: 'blur'},
+            {
+              type: 'string',
+              pattern: /^[0-9]{6}$/,
+              message: '请输入6位手机验证码',
+              trigger: 'blur'
+            },
           ]
         },
         input: '',
@@ -222,11 +249,36 @@
     },
     methods: {
       changeCode: function () {
-        var now = new Date();
+        let now = new Date();
         this.code = '/api/code?time=' + now;
       },
-      loginOut: function () {
-        var that = this;
+      timePhoneNumber: function () {
+        // 调用获取验证码的接口
+
+        let that = this;
+        this.timerNumber = 60;
+        let timer = setInterval(function(){
+          that.timerNumber--;
+          if(that.timerNumber==0){
+            clearInterval(timer)
+            that.timerNumber =false;
+          }
+        },1000)
+      },
+      // loginOut: function () {
+      //   let that = this;
+      //   this.$axios({
+      //     method: 'get',
+      //     url: '/api/logout2',
+      //   }).then(function (res) {
+      //     console.log(res)
+      //     that.userName = 'false';
+      //   })
+      // },
+
+      //退出登录
+      ok:function () {
+        let that = this;
         this.$axios({
           method: 'get',
           url: '/api/logout2',
@@ -235,19 +287,24 @@
           that.userName = 'false';
         })
       },
+      cancel:function () {
+        console.log('取消退出登录啦！')
+      },
+
       showLogin: function () {
         // this.modalLogin = true;
-        var now = new Date();
+        let now = new Date();
         this.code = '/api/code?time=' + now;
       },
+      // 登录
       handleLogin(name) {
-        var that = this;
+        let that = this;
         this.$refs[name].validate((valid) => {
           if (valid) {
-            var password = that.$refs.formLogin.model.password;
-            var phone = that.$refs.formLogin.model.phone;
-            var code = that.$refs.formLogin.model.code;
-            var params = new URLSearchParams();
+            let password = that.$refs.formLogin.model.password;
+            let phone = that.$refs.formLogin.model.phone;
+            let code = that.$refs.formLogin.model.code;
+            let params = new URLSearchParams();
             params.append('uid', phone);
             params.append('pwd', password);
             params.append('code', code);
@@ -258,12 +315,23 @@
             })
               .then(
                 function (res) {
-                  console.log(res);
-                  that.modalLogin = false;
-                  that.$Message.success('登录成功!');
-                  // setTimeout(function () {
-                  //   window.location.reload()
-                  // },2000)
+                  if(res.data.rc==0){
+                    that.modalLogin = false;
+                    that.$Message.success(res.data.rm);
+                      // that.userName = phone;
+                    setTimeout(function () {
+                      window.location.reload()
+                    },100)
+                  }else if(res.data.rc==1){
+                    that.$Message.error(res.data.rm)
+                    that.changeCode()
+                  }else if(res.data.rc==2){
+                    that.$Message.error(res.data.rm)
+                    that.changeCode()
+                  }else{
+                    that.$Message.error('未知错，请联系管理人员')
+                    that.changeCode()
+                  }
                 }
               )
               .catch(function () {
@@ -274,16 +342,17 @@
           }
         })
       },
+      //注册
       handleSign(name) {
-        var that = this;
+        let that = this;
         this.$refs[name].validate((valid) => {
           if (valid) {
             if (that.$refs.formSign.model.password === that.$refs.formSign.model.rpassword) {
               // usn(显示名), uid(电话号码), pwd(密码)
-              var password = that.$refs.formSign.model.password;
-              var phone = that.$refs.formSign.model.phone;
-              var name = that.$refs.formSign.model.name;
-              var params = new URLSearchParams();
+              let password = that.$refs.formSign.model.password;
+              let phone = that.$refs.formSign.model.phone;
+              let name = that.$refs.formSign.model.name;
+              let params = new URLSearchParams();
               params.append('usn', name);
               params.append('uid', phone);
               params.append('pwd', password);
@@ -294,11 +363,19 @@
               })
                 .then(
                   function (res) {
-                    console.log("注册成功：", res);
-                    this.$Message.success('注册成功!去登录');
-                    console.log(that.$refs.formSign.model);
-                    this.modalSign = false;
-                    this.modalLogin = true;
+                    // console.log("注册成功：", res.data);
+                    // this.$Message.success('注册成功!去登录');
+                    // console.log(that.$refs.formSign.model);
+                    // this.modalSign = false;
+                    // this.modalLogin = true;
+                    if(res.data.rc==0){
+                      that.$Message.success(res.data.rm);
+                      console.log(that.$refs.formSign.model);
+                      that.modalSign = false;
+                      that.modalLogin = true;
+                    }else if(res.data.rc==1){
+                      that.$Message.error(res.data.rm);
+                    }
                   }
                 )
                 .catch();
@@ -310,15 +387,40 @@
           }
         })
       },
+      // 找回密码
       handleBack: function (name) {
-        var that = this;
+        let that = this;
         this.$refs[name].validate((valid) => {
           if (valid) {
             if (that.$refs.formBack.model.password === that.$refs.formBack.model.rpassword) {
-              this.$Message.success('找回成功!去登录');
-              console.log(that.$refs.formBack.model);
-              this.modalBack = false;
-              this.modalLogin = true;
+              // this.$Message.success('找回成功!去登录');
+              // console.log(that.$refs.formBack.model);
+              // this.modalBack = false;
+              // this.modalLogin = true;
+              let password = that.$refs.formBack.model.password;
+              let phone = that.$refs.formBack.model.phone;
+              let phoneCode = that.$refs.formBack.model.phoneCode;
+              let params = new URLSearchParams();
+              params.append('code', phoneCode);
+              params.append('uid', phone);
+              params.append('pwd', password);
+              this.$axios({
+                method: 'post',
+                url: '/api/forget2',
+                data: params
+              }).then(function(res){
+                // console.log('找回密码：',res)
+                if(res.data.rc==0){
+                  that.$Message.success(res.data.rm)
+                  that.modalBack = false;
+                  that.modalLogin = true;
+                }else if(res.data.rc==1){
+                  that.$message.error(res.data.rm)
+                }else if(res.data.rc==2){
+                  that.$message.error(res.data.rm)
+                }
+                
+              })
             } else {
               this.$Message.error('两次输入的密码不一致');
             }
@@ -351,23 +453,23 @@
 
     },
     beforeCreate(){
-      var that = this;
-      var cookie = document.cookie.split(";");
+      let that = this;
+      let cookie = document.cookie.split(";");
       cookie.map(function (item) {
         if (/usn/g.test(item)) {
           // console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjj');
-          var username = item.split("=")[1];
+          let username = item.split("=")[1];
           that.userName = username;
         }
       });
     },
     created() {
-      var that = this;
-      var cookie = document.cookie.split(";");
+      let that = this;
+      let cookie = document.cookie.split(";");
       cookie.map(function (item) {
         if (/usn/g.test(item)) {
           // console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjj');
-          var username = item.split("=")[1];
+          let username = item.split("=")[1];
           that.userName = username;
         }
       });

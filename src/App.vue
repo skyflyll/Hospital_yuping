@@ -22,7 +22,7 @@
       <span>在线咨询</span>
     </div>
     <div class="window-chat" v-show="show">
-      <div class="left" id="listNode">
+      <div class="left" id="listNode" @click="changeUser()">
         <h2>在线人员</h2>
       </div>
       <div class="right">
@@ -55,7 +55,7 @@
           <div class="input" ref="inputValue" id="msgNode" contenteditable="true"></div>
           <div class="submit">
             <input type="file" class="ivu-upload" id="imgNode">
-            <!--<Button type="info" v-if="userInput === ''" size="small">发送</Button>-->
+            <!-- <Button type="info" v-if="userInput === ''" size="small" disabled>发送</Button> -->
             <Button type="primary" @click="send()" size="small" id="sendNode">发送</Button>
           </div>
         </div>
@@ -69,7 +69,7 @@
   import vNav from './components/part/vNav' //导航
   import vFooter from './components/part/vFooter' //脚步
   import vNotice from './components/part/vNotice' //公告
-  import chat from './components/part/chat.js' // 聊天js
+  // import chat from './components/part/chat.js' // 聊天js
 
   export default {
     name: 'App',
@@ -80,19 +80,9 @@
         show: false,
         count: "1",
         userInput: "",
-        chats: [
-          {
-            user: "user",
-            time: "3:55",
-            content:
-              "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"
-          },
-          {
-            admin: "admin",
-            time: "3:56",
-            content: "mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"
-          }
-        ]
+        localStorageUsers:'',
+        activeUser:'',
+        chats: []
       }
     },
     components: {
@@ -105,55 +95,65 @@
 
     },
     methods: {
+      changeUser:function(){
+        // console.log('sssssssssssssss')
+        this.activeUser = localStorage.getItem('activeUser')
+      },
       change(status) {
         this.$Message.info(`Status: ${status}`);
       },
       toggleChat: function () {
         this.show = !this.show;
+
         // console.log(this.show);
       },
       send: function () {
-        var that = this;
-        var chats = {};
+        let that = this;
+        let chat = {};
         console.log('hhhhhhhhhhhh', this.$refs.inputValue);
         // console.log()
         // this.userInput = this.$refs.inputValue.innerHTML;
-        chats.content = this.$refs.inputValue.innerHTML;
-
-        var cookie = document.cookie.split(";");
+        chat.content = this.$refs.inputValue.innerHTML;
+        let username;
+        let cookie = document.cookie.split(";");
         cookie.map(function (item) {
           if (/usn/g.test(item)) {
-            var username = item.split("=")[1];
-            chats.user = username;
+            username = item.split("=")[1];
+            chat.user = username;
           }
         });
-        chats.time = this.getNowFormatDate();
-
-        this.chats.push(chats);
-        localStorage.setItem("chats",JSON.stringify(this.chats));
-        console.log(this.$refs.content);
-        var time = setTimeout(function () {
+        chat.time = this.getNowFormatDate();
+        let activeUser = localStorage.getItem('activeUser')
+        this.localStorageUsers = username+'&'+activeUser;
+        let chats = !localStorage.getItem(username+'&'+activeUser)?[]:JSON.parse(localStorage.getItem(username+'&'+activeUser));
+        chats.push(chat);
+        this.chats = chats;
+        localStorage.setItem(username+'&'+activeUser,JSON.stringify(chats));
+        // console.log(this.$refs.content);
+        let time = setTimeout(function () {
           that.scrtop = that.$refs.content.scrollHeight - that.$refs.content.offsetHeight;
         }, 10);
       },
+      // 获取时间
       getNowFormatDate: function() {
-        var date = new Date();
-        var seperator1 = "-";
-        var seperator2 = ":";
-        var month = date.getMonth() + 1;
-        var strDate = date.getDate();
+        let date = new Date();
+        let seperator1 = "-";
+        let seperator2 = ":";
+        let month = date.getMonth() + 1;
+        let strDate = date.getDate();
         if (month >= 1 && month <= 9) {
           month = "0" + month;
         }
         if (strDate >= 0 && strDate <= 9) {
           strDate = "0" + strDate;
         }
-        var currentdate = date.getHours() + seperator2 + date.getMinutes();
+        let currentdate = date.getHours() + seperator2 + date.getMinutes();
         return currentdate;
       },
+      // 获取消息
       getNews: function (type) {
-        var that = this;
-        var params = new URLSearchParams();
+        let that = this;
+        let params = new URLSearchParams();
         params.append('query', JSON.stringify({type: type}));
         params.append('projection', JSON.stringify({"projection": {"content": 0, "writer": 0, "source": 0}}));
         params.append('collection', 'person');
@@ -164,7 +164,7 @@
         })
           .then(
             function (res) {
-              console.log(res);
+              console.log('=======',res);
             }
           )
           .catch()
@@ -174,14 +174,46 @@
       scrtop: function () {
         console.log(this.scrtop);
         this.$refs.content.scrollTop = this.scrtop;
+      },
+      activeUser: function (){
+
+        let username;
+        let cookie = document.cookie.split(";");
+        cookie.map(function (item) {
+          if (/usn/g.test(item)) {
+            username = item.split("=")[1];
+          }
+        });
+        
+        let activeUser = localStorage.getItem('activeUser')
+        this.localStorageUsers = username+'&'+activeUser;
+        let chats = !localStorage.getItem(username+'&'+activeUser)?[]:JSON.parse(localStorage.getItem(username+'&'+activeUser));
+        // console.log(chats)
+        this.chats = chats;
       }
     },
     created() {
-      this.getNews('1');
+      // this.getNews('1');
       // this.scrtop = this.$refs.content.scrollHeight - this.$refs.content.offsetHeight;···
-      var chats = localStorage.getItem('chats');
-      this.chats =JSON.parse(chats);
-      console.log(chats);
+      // let chats = localStorage.getItem(this.localStorageUsers);
+      // this.chats =JSON.parse(chats);
+      // console.log('-------------',chats);
+      let ws = new WebSocket("ws://localhost:8088");
+      ws.onopen = function(){
+        ws.onclose = function(){
+          console.log('dddddddddddd')
+        }
+        ws.onmessage = function(ev){
+          try {
+            // center(JSON.parse(ev.data));
+            console.log('llllllllllllllll',ev)
+
+          } catch (e) {
+            console.error(e);
+          }
+        }
+      }
+
     }
   }
 </script>
@@ -411,6 +443,7 @@
                 float: left;
                 vertical-align: top;
                 width: 20px;
+                transform: rotateY(180deg);
               }
               & > span {
                 display: inline-block;

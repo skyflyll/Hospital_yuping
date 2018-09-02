@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
   resize();
 });
 
+console.log(123)
+
 function restoreSelection(text, mode) {
   //Function to restore the text selection range from the editor
   var node;
@@ -141,8 +143,9 @@ function initWS() {
 
   var audio = new Audio();
 
-  audio.src = "/audio/ring.mp3";
+  audio.src = "../../assets/ring.mp3";
 
+  // var ws = new WebSocket("ws://localhost:" + location.port);
   var ws = new WebSocket("ws://localhost:8088");
 
   var _id, _name;
@@ -226,10 +229,42 @@ function initWS() {
 
       case 1001://收到消息
 
-        audio.play();
+        // audio.play();
 
-        console.log(obj);
+        console.log('+++++++++',obj);
+        let username;
+        let cookie = document.cookie.split(";");
+        cookie.map(function (item) {
+          if (/usn/g.test(item)) {
+            username= item.split("=")[1];
+          }
+        });
+        let chats =!localStorage.getItem(username+'&'+obj.from)? []:JSON.parse(localStorage.getItem(username+'&'+obj.from));
+        // console.log('dddddddddddddddd',chats)
 
+         function getNowFormatDate() {
+          let date = new Date();
+          let seperator1 = "-";
+          let seperator2 = ":";
+          let month = date.getMonth() + 1;
+          let strDate = date.getDate();
+          if (month >= 1 && month <= 9) {
+            month = "0" + month;
+          }
+          if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+          }
+          let currentdate = date.getHours() + seperator2 + date.getMinutes();
+          return currentdate;
+        };
+        let chat = {
+            admin: "admin",
+            time: getNowFormatDate(),
+            content: obj.msg,
+        }
+        chats.push(chat)
+        changeUser();
+        localStorage.setItem(username+'&'+obj.from,JSON.stringify(chats))
         break;
 
       case 2000://医生加入聊天室
@@ -271,14 +306,25 @@ function initWS() {
         var li = document.createElement("li");
         var department= decodeURI(obj.department);
         li.id = id;
-        li.innerText = department+"--"+obj.name;
+        li.innerText = department+"--"+decodeURI(obj.name);
         li.onclick = initBox;
 
         li.addEventListener('click',function () {
-          console.log(obj)
 
-          document.getElementsByClassName("personnel")["0"].innerHTML ="咨询："+department+"&nbsp;/&nbsp;"+obj.name
-
+          document.getElementsByClassName("personnel")["0"].innerHTML ="咨询："+department+"&nbsp;/&nbsp;"+decodeURI(obj.name)
+          localStorage.setItem('activeUser',obj.id)
+          let username;
+          let cookie = document.cookie.split(";");
+          cookie.map(function (item) {
+            if (/usn/g.test(item)) {
+              username= item.split("=")[1];
+            }
+          });
+          if(!localStorage.getItem(username+'&'+obj.id)){
+            localStorage.setItem(username+'&'+obj.id,[''])
+          }else{
+            console.log('dddddddddddddddddddddd')
+          }
         });
 
         listNode.appendChild(li);
@@ -346,10 +392,13 @@ function initWS() {
       var div = document.createElement("div");
 
       div.id = id;
+
       div.innerHTML = '<button class="btn btn-default" type="button">' + decodeURI(obj.name) + '(' + obj.from + ') <span class="badge">1</span></button>';
+      
       div.onclick = initBox2;
 
       chatListNode.appendChild(div);
+
     }
 
     addHistory(obj.from, '<span>' + obj.msg + '</span>');

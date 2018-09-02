@@ -22,7 +22,10 @@
     </div>
     <div class="menu-wrap clearfix" >
       <ul>
-        <li v-for="item in menu"><router-link :to="{path:item.href}">{{item.title}}</router-link></li>
+        <li v-for="item in menu">
+          <a v-if="item.title=='预约挂号'" :href="item.href" target="_blank">{{item.title}}</a>
+          <a v-else :href="item.href">{{item.title}}</a>
+          </li>
       </ul>
     </div>
   </div>
@@ -39,7 +42,7 @@
             href: "javascript:;"
           }, {
             title: "预约挂号",
-            href: "javascript:;"
+            href: "https://weixincs.guizhou12320.org.cn/12320yywz/reservationHisDetail"
           }, {
             title: "网上答疑",
             href: "javascript:;"
@@ -48,7 +51,7 @@
             href: "/news/list?table=announcement&type=6"
           }, {
             title: "院长信箱",
-            href: "mailto:270901715@qq.com"
+            href: "mailto:3106154101@qq.com"
           }
         ],
         newsCenter: [
