@@ -40,6 +40,12 @@
         }
         return (zero + num).slice(-digit);
       },
+      time:function(){
+        let that  =  this;
+        setInterval(function(){
+          that.updateTime()
+        },1000)
+      },
       updateTime: function () {
         var today = new Date();
         // console.log(today)
@@ -55,6 +61,7 @@
     },
     computed: {
       showTime: function () {
+        this.time();
         return this.updateTime()
       },
     },

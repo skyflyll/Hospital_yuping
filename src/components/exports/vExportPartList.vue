@@ -35,37 +35,7 @@
         skip:0,
         name:'',
         type:'1',
-        exports:[
-          {
-            name:'xxxxxxx',
-            department:'xxxxxxxxxx',
-            position:'bbbbbbbbbbb',
-            title:'nnnnnnnnnnnnn',
-            src:'vvvvvvvvv'
-
-          },{
-            name:'xxxxxxx',
-            department:'xxxxxxxxxx',
-            position:'bbbbbbbbbbb',
-            title:'nnnnnnnnnnnnn',
-            src:'vvvvvvvvv'
-
-          },{
-            name:'xxxxxxx',
-            department:'xxxxxxxxxx',
-            position:'bbbbbbbbbbb',
-            title:'nnnnnnnnnnnnn',
-            src:'vvvvvvvvv'
-
-          },{
-            name:'xxxxxxx',
-            department:'xxxxxxxxxx',
-            position:'bbbbbbbbbbb',
-            title:'nnnnnnnnnnnnn',
-            src:'vvvvvvvvv'
-
-          }
-        ]
+        exports:[]
       }
     },
 
@@ -82,7 +52,7 @@
             continue;
           }
           var name = pairs[i].substring(0, pos);
-          console.log(name);
+          // console.log(name);
           var value = pairs[i].substring(pos + 1);
           args[name] = value;
         }
@@ -136,7 +106,7 @@
         }else if(this.type==='3'){
           this.title = '护士介绍'
         }
-        console.log(search);
+        // console.log(search);
         this.getNews(this.limit,this.skip,this.name,this.type);
       }
     },
@@ -154,7 +124,7 @@
       }else if(this.type==='3'){
         this.title = '护士介绍'
       }
-      console.log(search)
+      // console.log(search)
       this.getNews(this.limit,this.skip,this.name,this.type);
 
       // this.getNews()

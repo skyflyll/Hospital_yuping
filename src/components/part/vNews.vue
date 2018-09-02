@@ -24,7 +24,9 @@
       <ul>
         <li v-for="item in menu">
           <a v-if="item.title=='预约挂号'" :href="item.href" target="_blank">{{item.title}}</a>
-          <a v-else :href="item.href">{{item.title}}</a>
+          <a v-else-if="item.title=='院长信箱'" :href="item.href">{{item.title}}</a>
+          <router-link v-else-if="item.title=='安排门诊'" :to="{path:item.href,query:{name:'门诊安排'}}">{{item.title}}</router-link>
+          <router-link v-else :to="{path:item.href}">{{item.title}}</router-link>
           </li>
       </ul>
     </div>
@@ -39,13 +41,13 @@
         menu: [
           {
             title: "安排门诊",
-            href: "javascript:;"
+            href: "/zhinan/list"
+          }, {
+            title: "专家团队",
+            href: "/zhuanjia"
           }, {
             title: "预约挂号",
             href: "https://weixincs.guizhou12320.org.cn/12320yywz/reservationHisDetail"
-          }, {
-            title: "网上答疑",
-            href: "javascript:;"
           }, {
             title: "政策法规",
             href: "/news/list?table=announcement&type=6"
@@ -54,33 +56,7 @@
             href: "mailto:3106154101@qq.com"
           }
         ],
-        newsCenter: [
-          {
-            name: '某某某动态信息',
-            href: 'javascript:;',
-            url: require("../../assets/doctor.png"),
-            details: '某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
-            time: '2018-03-15'
-          }, {
-            name: '某某某动态信息',
-            href: 'javascript:;',
-            url: require("../../assets/doctor.png"),
-            details: '某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
-            time: '2018-03-15'
-          }, {
-            name: '某某某动态信息',
-            href: 'javascript:;',
-            url: require("../../assets/doctor.png"),
-            details: '某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
-            time: '2018-03-15'
-          }, {
-            name: '某某某动态信息',
-            href: 'javascript:;',
-            url: require("../../assets/doctor.png"),
-            details: '某某某动态信息某某某动态信息某某某动态信息某某某动态信息',
-            time: '2018-03-15'
-          }
-        ]
+        newsCenter: []
       }
     },
     methods: {

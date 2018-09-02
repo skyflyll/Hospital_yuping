@@ -36,7 +36,7 @@
         })
           .then(
             function (res) {
-              console.log(res)
+              // console.log(res)
               if(res.data.data.src ){
                 res.data.data.src = res.data.data.src.replace('wwwroot','http://localhost:8088');
               }
@@ -56,7 +56,7 @@
       '$route': function () {
         var name = decodeURI(window.location.search, 'UTF-8')
         name = name.replace('?name=', '');
-        console.log(name)
+        // console.log(name)
         this.getArticl(name);
       }
     }

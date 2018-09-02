@@ -365,8 +365,9 @@
     ]
   },
   {
-    "url": "/javascript:;",
+    "url": "/zhinan/list",
     "name": "门诊安排",
-    "list": []
+    "filter": "门诊安排",
+    "list":[]
   }
 ]

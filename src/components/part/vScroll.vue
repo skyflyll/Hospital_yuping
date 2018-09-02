@@ -20,31 +20,7 @@
     data() {
       return {
         listData5: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        notices:[
-          {
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'/javascript:;'
-          },
-          {
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'/javascript:;'
-          },
-          {
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'/javascript:;'
-          },{
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'/javascript:;'
-          },{
-            title:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            time:'2018-03-19',
-            href:'/javascript:;'
-          }
-          ]
+        notices:[]
       }
     },
     computed: {
@@ -104,7 +80,7 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      width: 1550px;
+      width: 1240px;
       .li-item {
         float: left;
         width: 300px;

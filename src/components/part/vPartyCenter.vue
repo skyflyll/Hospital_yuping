@@ -67,128 +67,23 @@
       return {
         partys: [
           {
-            title: '建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          },
-          {
-            title: '领导班子建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          },
-          {
-            title: '领导班子建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          }, {
-            title: '领导班子建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          }, {
-            title: '领导班子建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          },
-          {
-            title: '领导班子建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          },
-          {
-            title: '领导班子建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
-          },
-          {
-            title: '领导班子建党园地建党园地建党园地建党园地',
-            href: 'javascript:;',
-            img: require('../../assets/logo.png')
+            
           }
         ],
-        tabsParam: ['患者心声', '职工之家','组织投票'],
+        tabsParam: ['患者心声', '职工之家'],
         nowIndex: 0,
         xinsheng: [
-          {
-            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          },
-          {
-            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '患者心声患者心声患者心声患者心声患者心声患者心声患者心声患者心声',
-            time: '2018-03-19',
-            href: 'javascript:;'
+         {
           }
         ],
         homes: [
-          {
-            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          },
-          {
-            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '职工之家职工之家职工之家职工之家职工之家职工之家',
-            time: '2018-03-19',
-            href: 'javascript:;'
+         {
+            
           }
         ],
         works: [
-          {
-            title: '党组织投票党组织投票党组织投票党组织投票',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          },
-          {
-            title: '党组织投票党组织投票党组织投票党组织投票党组织投票党组织投票党组织投票党组织投票',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '党组织投票党组织投票党组织投票党组织投票',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '党组织投票党组织投票党组织投票党组织投票',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '党组织投票党组织投票党组织投票党组织投票',
-            time: '2018-03-19',
-            href: 'javascript:;'
-          }, {
-            title: '党组织投票党组织投票党组织投票党组织投票',
-            time: '2018-03-19',
-            href: 'javascript:;'
+         {
+            
           }
         ]
       }

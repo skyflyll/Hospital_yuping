@@ -45,38 +45,8 @@
       return{
         exports:[
           {
-            url:require('../../assets/logo.png'),
-            name:'王老五',
-            department:'妇产科',
-            position:'主任',
-            title:'高级医师',
-            introduce:'介绍',
-            out:'出诊信息'
-          },{
-            url:require('../../assets/logo.png'),
-            name:'王老五',
-            Department:'xxxxxxxx',
-            position:'xxxxxxxx',
-            title:'xxxxxxx',
-            introduce:'xxxx',
-            out:'xxxxx'
-          },{
-            url:require('../../assets/logo.png'),
-            name:'王老五',
-            Department:'xxxxxxxx',
-            position:'xxxxxxxx',
-            title:'xxxxxxx',
-            introduce:'xxxx',
-            out:'xxxxx'
-          },{
-            url:require('../../assets/logo.png'),
-            name:'王老五',
-            Department:'xxxxxxxx',
-            position:'xxxxxxxx',
-            title:'xxxxxxx',
-            introduce:'xxxx',
-            out:'xxxxx'
-          },
+
+          }
         ]
       }
     },

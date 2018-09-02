@@ -44,66 +44,10 @@
     data() {
       return {
         recruits: [
-          {
-            title: '哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          },
-          {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          },
-          {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          },
-          {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          }, {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          }, {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          }
-
+        
         ],
         lectures: [
-          {
-            title: '哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          },
-          {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          },
-          {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          },
-          {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          }, {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          }, {
-            title: '哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或哈哈哈哈撒多付多付或或',
-            time: '2018-03-16',
-            href: 'javascript',
-          }
-
+          
         ]
       }
     },

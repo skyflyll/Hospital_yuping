@@ -47,7 +47,7 @@
             continue;
           }
           var name = pairs[i].substring(0, pos);
-          console.log(name);
+          // console.log(name);
           var value = pairs[i].substring(pos + 1);
           args[name] = value;
         }
@@ -69,7 +69,7 @@
         })
           .then(
             function (res) {
-              console.log(res);
+              // console.log(res);
               that.count = res.data.count;
               res.data.data.map(function (item) {
                 var time = new Date(item.time);

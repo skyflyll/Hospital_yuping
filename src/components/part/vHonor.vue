@@ -29,31 +29,7 @@
     data() {
       return {
         listData5: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-        notices: [
-          {
-            title: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            url:require('../../assets/logo.png'),
-            href: 'javascript:;'
-          },
-          {
-            title: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            url:require('../../assets/logo.png'),
-            href: 'javascript:;'
-          },
-          {
-            title: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            url:require('../../assets/logo.png'),
-            href: 'javascript:;'
-          }, {
-            title: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            url:require('../../assets/logo.png'),
-            href: 'javascript:;'
-          }, {
-            title: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-            url:require('../../assets/logo.png'),
-            href: 'javascript:;'
-          }
-        ]
+        notices: []
       }
     },
     methods:{

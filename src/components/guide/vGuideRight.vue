@@ -17,45 +17,13 @@ export default {
   data() {
     return {
       rightList: [
-        {
-          name: "测试测试",
-          item: [
-            {
-              url: "/gaikuang/lindao",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "/gaikuang/",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            },
-            {
-              url: "javascript:;",
-              title: "哈哈哈哈或或或"
-            }
-          ]
-        }
+        
       ]
     };
   },
   created() {
     this.rightList =leftData[this.navIndex];
-    console.log(leftData[this.navIndex])
+    // console.log('data--------',leftData[this.navIndex])
   }
 };
 </script>

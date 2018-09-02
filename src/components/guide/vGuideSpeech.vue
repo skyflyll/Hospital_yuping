@@ -38,7 +38,7 @@
           })
             .then(
               function (res) {
-                console.log(res);
+                // console.log(res);
                 that.articl = res.data.data;
               }
             )
@@ -49,7 +49,7 @@
         '$route':function () {
           var name = decodeURI(window.location.search,"UTF-8");
           name = name.replace("?name=","");
-          console.log(name);
+          // console.log(name);
           if(name ==''){
             name = '住院须知'
           }
@@ -60,7 +60,7 @@
       created(){
         var name = decodeURI(window.location.search,"UTF-8");
             name = name.replace("?name=","");
-            console.log(name);
+            // console.log(name);
             if(name ==''){
               name = '住院须知'
             }

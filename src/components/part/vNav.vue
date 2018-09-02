@@ -3,7 +3,11 @@
     <div class="nav-wrap">
       <ul>
         <li v-for="(item,index) in nav" :key="index" @click="toggleNavs(index)">
-          <router-link :to="{ path: item.url}"
+          <router-link v-if="item.filter" :to="{ path: item.url,query:{name:'门诊安排'}}"
+                       :class="{active:index===navIndex}">
+            {{item.name}}
+          </router-link>
+          <router-link v-else :to="{ path: item.url}"
                        :class="{active:index===navIndex}">
             {{item.name}}
           </router-link>
@@ -52,7 +56,7 @@
     },
     methods: {
       toggleNavs: function (index) {
-        console.log(index);
+        // console.log(index);
         this.navIndex = index;
       },
       importantList:function () {

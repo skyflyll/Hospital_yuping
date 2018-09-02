@@ -62,6 +62,12 @@
                   <FormItem label="手机号：" prop="phone">
                     <Input v-model="formSign.phone" placeholder="输入用户名/手机号"></Input>
                   </FormItem>
+                  <FormItem label="验证码：" prop="phoneCode">
+                    <Input v-model="formSign.phoneCode" placeholder="请输入6位验证码">
+                      <Button v-if="timerNumber==false" slot="append" @click="phoneSignCode">获取验证码</Button>
+                      <Button v-else slot="append" disabled>{{timerNumber}}秒后重新获取</Button>
+                    </Input>
+                  </FormItem>
                   <FormItem label="密码：" prop="password">
                     <Input v-model="formSign.password" type="password" placeholder="输入密码"></Input>
                   </FormItem>
@@ -91,7 +97,7 @@
                   </FormItem>
                   <FormItem label="验证码：" prop="phoneCode">
                     <Input v-model="formBack.phoneCode" placeholder="请输入6位验证码">
-                      <Button v-if="timerNumber==false" slot="append" @click="timePhoneNumber">获取验证码</Button>
+                      <Button v-if="timerNumber==false" slot="append" @click="phoneBackCode">获取验证码</Button>
                       <Button v-else slot="append" disabled>{{timerNumber}}秒后重新获取</Button>
                     </Input>
                   </FormItem>
@@ -139,8 +145,8 @@
         </div>
         <div class="search-wrap">
           <div class="search">
-            <Input v-model="value" placeholder="输入内容" size="large" class="search-input"/>
-            <Button type="primary" icon="ios-search" class="search-button" size="large">搜索</Button>
+            <!-- <Input v-model="value" placeholder="输入内容" size="large" class="search-input"/>
+            <Button type="primary" icon="ios-search" class="search-button" size="large">搜索</Button> -->
           </div>
         </div>
       </div>
@@ -167,6 +173,7 @@
         formSign: {
           name: '',
           phone: '',
+          phoneCode:'',
           password: '',
           rpassword: '',
         },
@@ -252,19 +259,66 @@
         let now = new Date();
         this.code = '/api/code?time=' + now;
       },
-      timePhoneNumber: function () {
-        // 调用获取验证码的接口
-
+      phoneSignCode:function () {
         let that = this;
-        this.timerNumber = 60;
-        let timer = setInterval(function(){
-          that.timerNumber--;
-          if(that.timerNumber==0){
-            clearInterval(timer)
-            that.timerNumber =false;
+        // console.log('发送短信中....')
+        var params = new URLSearchParams();
+
+        params.append('phone', this.formSign.phone);
+        params.append('logon', '1');
+        this.$axios({
+          method: 'post',
+          url:'/api/sendSMS',
+          data:params
+        }).then(function(err,res){
+          if(res.data.rc=='0'){
+            that.$Message.success(res.data.rm);
+            that.timerNumber = 60;
+            let timer = setInterval(function(){
+              that.timerNumber--;
+              if(that.timerNumber==0){
+                clearInterval(timer)
+                that.timerNumber =false;
+              }
+            },1000)
+          }else if(res.data.rc=='3'){
+            that.$Message.error(res.data.rm);
+          }else{
+            that.$Message.error(res.data.rm);
           }
-        },1000)
+          
+        })
       },
+      phoneBackCode: function () {
+        // 调用获取验证码的接口
+        let that = this;
+        // console.log('发送短信中....')
+        var params = new URLSearchParams();
+
+        params.append('phone', this.formBack.phone);
+        this.$axios({
+          method: 'post',
+          url:'/api/sendSMS',
+          data:params
+        }).then(function(res){
+          if(res.data.rc=='0'){
+            that.$Message.success(res.data.rm);
+            that.timerNumber = 60;
+            let timer = setInterval(function(){
+              that.timerNumber--;
+              if(that.timerNumber==0){
+                clearInterval(timer)
+                that.timerNumber =false;
+              }
+            },1000)
+          }else if(res.data.rc=='3'){
+            that.$Message.error(res.data.rm);
+          }else{
+            that.$Message.error(res.data.rm);
+          }
+        })
+      },
+
       // loginOut: function () {
       //   let that = this;
       //   this.$axios({
@@ -283,12 +337,12 @@
           method: 'get',
           url: '/api/logout2',
         }).then(function (res) {
-          console.log(res)
+          // console.log(res)
           that.userName = 'false';
         })
       },
       cancel:function () {
-        console.log('取消退出登录啦！')
+        // console.log('取消退出登录啦！')
       },
 
       showLogin: function () {
@@ -352,10 +406,12 @@
               let password = that.$refs.formSign.model.password;
               let phone = that.$refs.formSign.model.phone;
               let name = that.$refs.formSign.model.name;
+              let phoneCode = that.$refs.formSign.model.phoneCode;
               let params = new URLSearchParams();
               params.append('usn', name);
               params.append('uid', phone);
               params.append('pwd', password);
+              params.append('code',phoneCode);
               this.$axios({
                 method: 'post',
                 url: '/api/logon',
@@ -370,7 +426,7 @@
                     // this.modalLogin = true;
                     if(res.data.rc==0){
                       that.$Message.success(res.data.rm);
-                      console.log(that.$refs.formSign.model);
+                      // console.log(that.$refs.formSign.model);
                       that.modalSign = false;
                       that.modalLogin = true;
                     }else if(res.data.rc==1){

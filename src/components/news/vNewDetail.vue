@@ -30,7 +30,7 @@
             continue;
           }
           var name = pairs[i].substring(0, pos);
-          console.log(name);
+          // console.log(name);
           var value = pairs[i].substring(pos + 1);
           args[name] = value;
         }
@@ -49,11 +49,11 @@
         })
           .then(
             function (res) {
-              console.log(res);
+              // console.log(res);
               var time = new Date(res.data.data.time);
               res.data.data.time = time.toLocaleDateString().replace(/\//g, "-");
               that.articl = res.data.data;
-              console.log(that.articl)
+              // console.log(that.articl)
             }
           )
           .catch()
@@ -62,13 +62,13 @@
     watch: {
       //监听路由的变化
       '$route': function () {
-        console.log('hhhhhhhhhhhhhhhhhh')
+        // console.log('hhhhhhhhhhhhhhhhhh')
         var serch = this.urlArgs(window.location.search);
         this.getArticl(serch.id, serch.table);
       }
     },
     created() {
-      console.log(window.location.search);
+      // console.log(window.location.search);
       var serch = this.urlArgs(window.location.search);
       this.getArticl(serch.id, serch.table);
     },

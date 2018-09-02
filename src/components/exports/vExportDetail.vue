@@ -13,7 +13,7 @@
         <p><strong>科室: </strong>{{articl.department}}</p>
         <p><strong>职务: </strong>{{articl.position}}</p>
         <p><strong>职称: </strong>{{articl.title}}</p>
-        <Button type="success" size="small">挂号预约</Button>
+        <Button type="success" size="small"><a href="https://weixincs.guizhou12320.org.cn/12320yywz/reservationHisDetail" target="_blank">挂号预约</a> </Button>
       </div>
       <div class="export-in clearfix">
         <h1>
@@ -72,7 +72,7 @@
         })
           .then(
             function (res) {
-              console.log(res)
+              // console.log(res)
               if(res.data.data.src ){
                 res.data.data.src = res.data.data.src.replace('wwwroot','http://localhost:8088');
               }
@@ -85,7 +85,7 @@
     created() {
       var id = decodeURI(window.location.search, 'UTF-8')
       id = id.replace('?id=', '');
-      console.log(id)
+      // console.log(id)
       this.getArticl(id);
     },
     watch: {
@@ -93,7 +93,7 @@
       '$route': function () {
         var id = decodeURI(window.location.search, 'UTF-8')
         id = id.replace('?id=', '');
-        console.log(id)
+        // console.log(id)
         this.getArticl(id);
       }
     }

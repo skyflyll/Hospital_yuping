@@ -60,7 +60,7 @@ export default {
           continue;
         }
         var name = pairs[i].substring(0, pos);
-        console.log(name);
+        // console.log(name);
         var value = pairs[i].substring(pos + 1);
         args[name] = value;
       }
@@ -94,7 +94,7 @@ export default {
             // that.details=res.data.data;
             // that.details=that.getLength(res.data.data);
             //["0"].src
-            console.log(res.data.data)
+            // console.log(res.data.data)
 
           }
         )
@@ -109,11 +109,11 @@ export default {
   },
   created(){
     //初始化数据
-    console.log(window.location.search);
+    // console.log(window.location.search);
     var serch = this.urlArgs(window.location.search);
     this.type=serch.type;
     this.getList(this.limit,this.skip,serch.type, serch.table);
-    console.log(this.limit,this.skip,serch.type, serch.table);
+    // console.log(this.limit,this.skip,serch.type, serch.table);
   },
   watch:{
     '$route': function () {

@@ -66,12 +66,12 @@ export default {
       })
         .then(
           function (res) {
-            console.log(res);
+            // console.log(res);
             that.count = res.data.count;
             // that.details=res.data.data;
             that.details=that.getLength(res.data.data);
             //["0"].src
-            console.log(that.details)
+            // console.log(that.details)
 
           }
         )
@@ -88,7 +88,7 @@ export default {
   created(){
     //初始化数据
     this.getList(this.limit,this.skip)
-    console.log(this.$router)
+    // console.log(this.$router)
   }
 }
 </script>

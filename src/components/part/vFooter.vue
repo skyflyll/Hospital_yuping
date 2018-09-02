@@ -3,11 +3,10 @@
     <div class="footer-head">
       <div class="head-wrap">
         <ul>
-          <li><a href="">版权声明</a></li>
-          <li><a href="">医院简介</a></li>
-          <li><a href="">就医指南</a></li>
-          <li><a href="">医院位置</a></li>
-          <li><a href="">玉屏侗族自治县人民医院</a></li>
+          <li><a href="javascript:;">版权声明</a></li>
+          <li><router-link :to="{path:'/zhinan/list',query:{name:'医院简介'}}">医院简介</router-link></li>
+          <li><router-link :to="'/zhinan'">就医指南</router-link></li>
+          <li><a href="http://map.baidu.com/?newmap=1&ie=utf-8&s=s%26wd%3D%E7%8E%89%E5%B1%8F%E4%BE%97%E6%97%8F%E8%87%AA%E6%B2%BB%E5%8E%BF%E4%BA%BA%E6%B0%91%E9%99%A2" target="_blank">医院位置</a></li>
         </ul>
       </div>
     </div>
@@ -20,15 +19,15 @@
         </div>
       </div>
       <div class="content-detail">
-        <p>Copyright @ 2018-2018 玉屏侗族自治县人民院
+        <p>Copyright @ 2015-2030 玉屏侗族自治县人民院
           <br/>
           百度认证官网：玉屏侗族自治县人民院 | 中文域名：玉屏侗族自治县人民院.公益
           <br/>
-          电话：0851-xxxxxxxxx 传真：0851- xxxxxxxxx 电子邮件地址：xxxxxxxx@163.com
+          电话：0856-3221096 传真：0856-3221096 电子邮件地址：ypxrmyy@163.com
           <br/>
-          地址：玉屏侗族自治县人民院xxxxx，邮编：550002 贵公网安备 xxxxxxxxxxxxxxx号
+          地址：铜仁市玉屏侗族自治县平溪镇茅坪新区平江路，邮编：554000 
           <br/>
-          执业机构许可证登记号：xxxxxxxxxxx-xxxxxxxxxxxxxxx 黔ICP备xxxxxxxxxxx号 黔卫网审【xxxx】0xxx号</p>
+          执业机构许可证登记号：42960004152062211A1001 </p>
       </div>
     </div>
   </div>
@@ -119,6 +118,9 @@
       .content-detail{
         width: 500px;
         float: left;
+        p{
+          margin-top: 15px
+        }
       }
     }
 

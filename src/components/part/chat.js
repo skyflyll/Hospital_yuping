@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
   resize();
 });
 
-console.log(123)
+// console.log(123)
 
 function restoreSelection(text, mode) {
   //Function to restore the text selection range from the editor

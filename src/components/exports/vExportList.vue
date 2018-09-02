@@ -34,37 +34,7 @@ export default {
       limit:9,
       skip:0,
       type:'1',
-      exports:[
-        {
-          name:'xxxxxxx',
-          department:'xxxxxxxxxx',
-          position:'bbbbbbbbbbb',
-          title:'nnnnnnnnnnnnn',
-          src:'vvvvvvvvv'
-
-        },{
-          name:'xxxxxxx',
-          department:'xxxxxxxxxx',
-          position:'bbbbbbbbbbb',
-          title:'nnnnnnnnnnnnn',
-          src:'vvvvvvvvv'
-
-        },{
-          name:'xxxxxxx',
-          department:'xxxxxxxxxx',
-          position:'bbbbbbbbbbb',
-          title:'nnnnnnnnnnnnn',
-          src:'vvvvvvvvv'
-
-        },{
-          name:'xxxxxxx',
-          department:'xxxxxxxxxx',
-          position:'bbbbbbbbbbb',
-          title:'nnnnnnnnnnnnn',
-          src:'vvvvvvvvv'
-
-        }
-      ]
+      exports:[]
     }
   },
 
@@ -108,7 +78,7 @@ export default {
   },
   watch:{
     '$route':function () {
-      console.log(window.location.pathname.split('/')[1]);
+      // console.log(window.location.pathname.split('/')[1]);
       var shengfen = window.location.pathname.split('/')[1];
       this.shengfen = shengfen;
       if(shengfen=='zhuanjia'){
@@ -121,12 +91,12 @@ export default {
         this.type ='3';
         this.title='护士介绍';
       }
-      console.log(this.limit,this.skip,this.type);
+      // console.log(this.limit,this.skip,this.type);
       this.getNews(this.limit,this.skip,this.type);
     }
   },
   created(){
-    console.log(window.location.pathname.split('/')[1]);
+    // console.log(window.location.pathname.split('/')[1]);
     var shengfen = window.location.pathname.split('/')[1];
     this.shengfen = shengfen;
     if(shengfen=='zhuanjia'){
@@ -139,7 +109,7 @@ export default {
       this.type ='3';
       this.title='护士介绍';
     }
-    console.log(this.limit,this.skip,this.type);
+    // console.log(this.limit,this.skip,this.type);
     this.getNews(this.limit,this.skip,this.type);
   }
 }

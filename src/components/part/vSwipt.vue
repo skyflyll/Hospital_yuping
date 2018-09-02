@@ -15,25 +15,7 @@
     data () {
       return {
         value1: 1,
-        banners:[
-          {
-            url:require('../../assets/banner.jpg'),
-            href:'javascript:;',
-            title:"xxxxxxxxxxxxxxx"
-          },{
-            url:require('../../assets/banner1.jpg'),
-            href:'javascript:;',
-            title:"xxxxxxxxxxxxxxx"
-          },{
-            url:require('../../assets/banner2.jpg'),
-            href:'javascript:;',
-            title:"xxxxxxxxxxxxxxx"
-          },{
-            url:require('../../assets/banner3.jpg'),
-            href:'javascript:;',
-            title:"xxxxxxxxxxxxxxx"
-          }
-          ]
+        banners:[]
       }
     },
     methods:{

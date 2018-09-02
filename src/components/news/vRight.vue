@@ -76,7 +76,7 @@ export default {
   created() {
     // this.rightList =this.rightList;
     // console.log(leftData[this.navIndex])
-    console.log(this.rightList)
+    // console.log(this.rightList)
   }
 };
 </script>
