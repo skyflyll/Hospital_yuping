@@ -10,7 +10,8 @@
           <ul class="ul-item clearfix">
             <li class="li-item" v-for="item in partys">
               <router-link :to="{ path: '/news/detail',query:{table:'announcement',id:item._id}}">
-                <img :src="item.img" alt="">
+                <img v-if="item.img==null" src="../../assets/logo.jpg" class="logo_img" alt="">
+                <img v-else :src="item.img" alt="">
                 <p>{{item.title}}</p>
               </router-link>
             </li>
@@ -112,13 +113,17 @@
             function (res) {
               // console.log(res);
               res.data.data.map(function (item) {
-                var imgs=item.content.match(/<img[^>]+>/g)
-                // var img1="http://localhost:8088"+imgs[0].replace('<img src="','').replace('">','');
-                var host="http://localhost:8088";
-                var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-                var img1=host+imgs[0].match(srcReg)[1];
-                // console.log(img1);
-                item.img=img1;
+                if(item.content.match(/<img[^>]+>/g)){
+                  var imgs=item.content.match(/<img[^>]+>/g)
+                  // var img1="http://localhost:8088"+imgs[0].replace('<img src="','').replace('">','');
+                  // var host="http://localhost:8088";
+                  var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+                  var img1=imgs[0].match(srcReg)[1];
+                  // console.log(img1);
+                  item.img=img1;
+                }else{
+                  item.url=null
+                }
               })
               that.partys = res.data.data;
               // console.log(res.data.data)
@@ -274,7 +279,7 @@
                 margin: 0;
               }
               a {
-                width: 300px;
+                width: 190px;
                 border: 0;
                 margin: 0;
                 display: block;
@@ -289,6 +294,11 @@
                   width: 200px;
                   height: 180px;
                 }
+                .logo_img{
+                  width: 180px;
+                  height: 180px;
+                  margin: 10px auto;
+                }
                 p {
                   width: 180px;
                   height: 38px;
@@ -299,6 +309,7 @@
                   white-space: nowrap;
                   box-sizing: border-box;
                   margin-top: 10px;
+                  text-align: center;
                   color: @content;
                 }
               }

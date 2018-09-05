@@ -270,8 +270,9 @@
           method: 'post',
           url:'/api/sendSMS',
           data:params
-        }).then(function(err,res){
+        }).then(function(res){
           if(res.data.rc=='0'){
+            // console.log("ddddddd")
             that.$Message.success(res.data.rm);
             that.timerNumber = 60;
             let timer = setInterval(function(){

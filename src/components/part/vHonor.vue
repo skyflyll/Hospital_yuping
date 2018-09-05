@@ -8,7 +8,8 @@
       <ul class="ul-item clearfix">
         <li class="li-item" v-for="item in notices">
           <router-link :to="{ path: '/news/detail',query:{table:'announcement',id:item._id}}">
-            <img :src="item.url" alt="img">
+            <img v-if="item.url==null" src="../../assets/logo.jpg" class="logo_img" alt="img">
+            <img v-else :src="item.url" alt="img">
             <p>{{item.title}}</p>
           </router-link>
         </li>
@@ -34,6 +35,7 @@
     },
     methods:{
       getList:function (limit,skip,type,table) {
+        // console.log(">>>>>>>>>>>>>>>>>>>>")
         var that = this;
         var params = new URLSearchParams();
         params.append('limit', limit);
@@ -50,20 +52,25 @@
             function (res) {
               // console.log(res);
               res.data.data.map(function (item) {
-                var imgs=item.content.match(/<img[^>]+>/g)
-                // var img1="http://localhost:8088"+imgs[0].replace('<img src="','').replace('">','');
-                var host="http://localhost:8088";
-                var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-                var img1=imgs[0].match(srcReg)[1];
-                if(!/^http/.test(img1)){
-                  img1=host+imgs[0].match(srcReg)[1];
+                // 判断没有图片的情况
+                if(item.content.match(/<img[^>]+>/g)){
+                  var imgs=item.content.match(/<img[^>]+>/g)
+                  // var img1="http://localhost:8088"+imgs[0].replace('<img src="','').replace('">','');
+                  // var host="http://localhost:8088";
+                  var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+                  var img1=imgs[0].match(srcReg)[1];
+                  if(!/^http/.test(img1)){
+                    img1=imgs[0].match(srcReg)[1];
+                  }
+                  // console.log(img1);
+                  item.url=img1;
+                }else{
+                  item.url=null;
                 }
-                // console.log(img1);
-                item.url=img1;
+                // console.log(">>>>>>>>>>>>>>>>",item)
               })
               that.notices = res.data.data;
               // console.log(res.data.data)
-
             }
           )
           .catch()
@@ -165,11 +172,13 @@
         .li-item {
           float: left;
           width: 300px;
-          height: 250px;
+          height: 238px;
           margin: 0 0 0 10px;
           line-height: 38px;
           /*background-color: lightgray;*/
           border-radius: 5px;
+          box-sizing: border-box;
+          border: 1px solid @border;
           font-family: 'Amaranth', sans-serif;
           font-size: 20px;
           overflow: hidden;
@@ -193,6 +202,11 @@
               height: 200px;
               display: block;
               margin-left: -5px;
+            }
+            .logo_img{
+              width: 150px;
+              height: 150px;
+              margin: 20px auto;
             }
             p{
               text-align: center;

@@ -42,18 +42,18 @@
       return {
         articl:
           {
-            adept: "擅长小儿血液系统、高血压及遗传代谢性疾病诊治。",
-            department: "小儿内科",
-            detail: "dffasdfsadfddddddddddddddddddddddddddddddddddddddddd",
-            duty: "其他",
-            name: "王予川",
-            position: "硕士生导师",
-            src: "http://localhost:8088/tmp/3cac218fbdb1ab287df5738d51528788.jpeg",
-            tel: "18888888888",
-            time: 1523794451483,
-            title: "主任医师/教授",
-            type: "1",
-            _id: "5ad34213d2de140c302f5db8",
+            adept: "",
+            department: "",
+            detail: "",
+            duty: "",
+            name: "",
+            position: "",
+            src: "",
+            tel: "",
+            time: "",
+            title: "",
+            type: "",
+            _id: "",
           }
 
       }

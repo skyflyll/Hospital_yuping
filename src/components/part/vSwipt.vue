@@ -49,8 +49,12 @@
   }
 </script>
 <style lang="less" scoped>
+.demo-carousel{
+  height: 255px;
+}
 img{
   display: block;
-  width: 1000px;
+  width: 100%;
+  height: 255px;
 }
 </style>

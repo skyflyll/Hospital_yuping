@@ -206,6 +206,9 @@
               display: block;
             }
             a {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
               color: @bgc;
               font-weight: bold;
             }

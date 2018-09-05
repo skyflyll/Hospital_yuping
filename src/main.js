@@ -6,7 +6,9 @@ import router from './router'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
 
+require('es6-promise').polyfill();
 import axios from 'axios';
+
 
 Vue.prototype.$axios=axios;
 

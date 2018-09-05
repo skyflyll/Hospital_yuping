@@ -6,7 +6,8 @@
     </div>
     <div class="expert-content">
       <vue-seamless :data="exports" :class-option="classOption5" class="scroll-wrap">
-        <div class="expert-wrap" v-for="item in exports">
+        <ul class="ul-item clearfix">
+          <li class="expert-wrap li-item" v-for="item in exports">
           <img :src="item.src" alt="img">
           <div class="expert-introduce">
             <p><strong>姓名: </strong>{{item.name}}</p>
@@ -18,7 +19,8 @@
              <Button type="info" size="small"><router-link :to="{path:'/zhuanjia/detail',query:{id:item._id}}">出诊信息</router-link></Button>
             </div>
           </div>
-        </div>
+          </li>
+        </ul>
       </vue-seamless>
     </div>
   </div>
@@ -33,7 +35,7 @@
     computed:{
       classOption5() {
         return {
-          limitMoveNum: 4,
+          limitMoveNum: 5,
           direction: 2,
           step: 1,
           hoverStop: true,
@@ -43,18 +45,14 @@
     },
     data(){
       return{
-        exports:[
-          {
-
-          }
-        ]
+        exports:[{}]
       }
     },
     methods:{
       getNews: function () {
         var that = this;
         var params = new URLSearchParams();
-        params.append('limit', '4');
+        params.append('limit', '5');
         params.append('skip', '0');
         params.append('query', JSON.stringify({type:"1"}));
         params.append('projection', JSON.stringify({"projection": {"content": 0,"writer":0,"source":0}}));
@@ -157,6 +155,15 @@
         margin: 10px 0;
         width: 996px;
         overflow: hidden;
+        .ul-item{
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          width: 1240px;
+          .li-item {
+            font-family: 'Amaranth', sans-serif;
+          }
+        }
         .expert-wrap{
           width: 243px;
           height: 180px;
