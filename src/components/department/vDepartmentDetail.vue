@@ -127,6 +127,9 @@
         margin-top: 30px;
         font-size: 16px;
         color: @content;
+        img{
+          max-width: 100%;
+        }
       }
 
     }

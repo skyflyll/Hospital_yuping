@@ -5,6 +5,7 @@
     </div>
     <div class="export-list clearfix">
       <div class="expert-wrap clearfix" v-for="item in exports">
+        <router-link :to="{path:'/'+ shengfen +'/detail',query:{id:item._id}}">
         <img :src="item.src" alt="img">
         <div class="expert-introduce">
           <p><strong>姓名: </strong>{{item.name}}</p>
@@ -12,10 +13,11 @@
           <p><strong>职务: </strong>{{item.position}}</p>
           <p><strong>职称: </strong>{{item.title}}</p>
           <div class="btn">
-            <Button type="info" size="small"><router-link :to="{path:'/'+ shengfen +'/detail',query:{id:item._id}}">介绍</router-link></Button>
-            <Button type="info" size="small"><router-link :to="{path:'/'+ shengfen +'/detail',query:{id:item._id}}">出诊信息</router-link></Button>
+            <Button type="info" size="small">介绍</Button>
+            <Button v-if="title !='护士'" type="info" size="small">出诊信息</Button>
           </div>
         </div>
+        </router-link>
       </div>
     </div>
     <div class="page">
@@ -100,11 +102,11 @@
         this.name = search.name;
         this.type = search.type;
         if(this.type==='1'){
-          this.title = '专家介绍'
+          this.title = '专家'
         }else if(this.type==='2'){
-          this.title = '医生介绍'
+          this.title = '医生'
         }else if(this.type==='3'){
-          this.title = '护士介绍'
+          this.title = '护士'
         }
         // console.log(search);
         this.getNews(this.limit,this.skip,this.name,this.type);
@@ -118,11 +120,11 @@
       this.name = search.name;
       this.type = search.type;
       if(this.type==='1'){
-        this.title = '专家介绍'
+        this.title = '专家'
       }else if(this.type==='2'){
-        this.title = '医生介绍'
+        this.title = '医生'
       }else if(this.type==='3'){
-        this.title = '护士介绍'
+        this.title = '护士'
       }
       // console.log(search)
       this.getNews(this.limit,this.skip,this.name,this.type);

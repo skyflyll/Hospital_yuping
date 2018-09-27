@@ -8,17 +8,19 @@
       <vue-seamless :data="exports" :class-option="classOption5" class="scroll-wrap">
         <ul class="ul-item clearfix">
           <li class="expert-wrap li-item" v-for="item in exports">
-          <img :src="item.src" alt="img">
-          <div class="expert-introduce">
-            <p><strong>姓名: </strong>{{item.name}}</p>
-            <p><strong>科室: </strong>{{item.department}}</p>
-            <p><strong>职务: </strong>{{item.position}}</p>
-            <p><strong>职称: </strong>{{item.title}}</p>
-            <div class="btn">
-              <Button type="info" size="small"><router-link :to="{path:'/zhuanjia/detail',query:{id:item._id}}">介绍</router-link></Button>
-             <Button type="info" size="small"><router-link :to="{path:'/zhuanjia/detail',query:{id:item._id}}">出诊信息</router-link></Button>
-            </div>
-          </div>
+            <router-link :to="{path:'/zhuanjia/detail',query:{id:item._id}}">
+              <img :src="item.src" alt="img">
+              <div class="expert-introduce">
+                <p><strong>姓名: </strong>{{item.name}}</p>
+                <p><strong>科室: </strong>{{item.department}}</p>
+                <p><strong>职务: </strong>{{item.position}}</p>
+                <p><strong>职称: </strong>{{item.title}}</p>
+                <div class="btn">
+                  <Button type="info" size="small">介绍</Button>
+                <Button type="info" size="small">出诊信息</Button>
+                </div>
+              </div>
+            </router-link>
           </li>
         </ul>
       </vue-seamless>

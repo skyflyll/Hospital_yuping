@@ -34,7 +34,7 @@
           .then(
             function (res) {
               // console.log(res.data.data);
-              res.data.data.name = '专家介绍';
+              res.data.data.name = '专家科室';
               res.data.data.map(function (item) {
                 item.show = false;
               });
@@ -55,13 +55,13 @@
         // console.log(this.shengfen);
         if(shengfen==='zhuanjia'){
           this.type ='1';
-          that.rightList.name = '专家介绍';
+          that.rightList.name = '专家科室';
         }else if (shengfen==='yisheng'){
           this.type ='2';
-          that.rightList.name = '医生介绍';
+          that.rightList.name = '医生科室';
         }else if (shengfen==='hushi'){
           this.type ='3';
-          that.rightList.name = '护士介绍';
+          that.rightList.name = '护士科室';
         }
       }
     },
@@ -74,13 +74,13 @@
       // console.log(this.shengfen)
       if(shengfen==='zhuanjia'){
         this.type ='1';
-        that.rightList.name = '专家介绍';
+        that.rightList.name = '专家科室';
       }else if (shengfen==='yisheng'){
         this.type ='2';
-        that.rightList.name = '医生介绍';
+        that.rightList.name = '医生科室';
       }else if (shengfen==='hushi'){
         this.type ='3';
-        that.rightList.name = '护士介绍';
+        that.rightList.name = '护士科室';
       }
       // console.log(this.type)
     },

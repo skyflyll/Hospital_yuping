@@ -5,14 +5,16 @@ import App from './App'
 import router from './router'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
-
-require('es6-promise').polyfill();
+import 'url-search-params-polyfill';
+import promise from 'es6-promise';
+promise.polyfill();
 import axios from 'axios';
 
 
 Vue.prototype.$axios=axios;
 
 Vue.use(iView);
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

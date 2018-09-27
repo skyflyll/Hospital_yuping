@@ -24,7 +24,7 @@
       <ul>
         <li v-for="item in menu">
           <a v-if="item.title=='预约挂号'" :href="item.href" target="_blank">{{item.title}}</a>
-          <a v-else-if="item.title=='院长信箱'" :href="item.href">{{item.title}}</a>
+          <a v-else-if="item.title=='院长信箱'" :href="email">{{item.title}}</a>
           <router-link v-else-if="item.title=='安排门诊'" :to="{path:item.href,query:{name:'门诊安排'}}">{{item.title}}</router-link>
           <router-link v-else :to="{path:item.href}">{{item.title}}</router-link>
           </li>
@@ -38,6 +38,7 @@
     name: "news-center",
     data() {
       return {
+        email:'',
         menu: [
           {
             title: "安排门诊",
@@ -53,7 +54,7 @@
             href: "/news/list?table=announcement&type=6"
           }, {
             title: "院长信箱",
-            href: "mailto:3106154101@qq.com"
+            href: ""
           }
         ],
         newsCenter: []
@@ -96,10 +97,30 @@
             }
           )
           .catch()
-      }
+      },
+      getArticl:function () {
+          var that = this;
+          var params = new URLSearchParams();
+          params.append('query', JSON.stringify({title:"院长邮箱"}));
+          params.append('projection', JSON.stringify({"projection": {}}));
+          params.append('collection', 'special');
+          this.$axios({
+            method: 'post',
+            url:'/api/select',
+            data:params
+          })
+            .then(
+              function (res) {
+                // console.log(">>>>>>>>>>>>",res.data.data.content);
+                that.email ="mailto:"+res.data.data.content
+              }
+            )
+            .catch()
+        }
     },
     created() {
       this.getNews();
+      this.getArticl();
     }
 
   }

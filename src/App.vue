@@ -254,9 +254,9 @@
             clearTimeout(time);
           }, 10);
 
-          that.$refs.inputValue.innerHTML=null
+          that.$refs.inputValue.innerHTML=''
 
-          that.$refs.imgs.files=null
+          that.$refs.imgs.files=''
 
         }
       },

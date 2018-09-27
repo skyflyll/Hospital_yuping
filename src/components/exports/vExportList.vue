@@ -5,17 +5,20 @@
     </div>
     <div class="export-list clearfix">
       <div class="expert-wrap clearfix" v-for="item in exports">
-        <img :src="item.src" alt="img">
-        <div class="expert-introduce">
-          <p><strong>姓名: </strong>{{item.name}}</p>
-          <p><strong>科室: </strong>{{item.department}}</p>
-          <p><strong>职务: </strong>{{item.position}}</p>
-          <p><strong>职称: </strong>{{item.title}}</p>
-          <div class="btn">
-            <Button type="info" size="small"><router-link :to="{path:'/'+ shengfen +'/detail',query:{id:item._id}}">介绍</router-link></Button>
-            <Button type="info" size="small"><router-link :to="{path:'/'+ shengfen +'/detail',query:{id:item._id}}">出诊信息</router-link></Button>
+        <router-link :to="{path:'/'+ shengfen +'/detail',query:{id:item._id}}">
+          <img :src="item.src" alt="img">
+          <div class="expert-introduce">
+            <p><strong>姓名: </strong>{{item.name}}</p>
+            <p><strong>科室: </strong>{{item.department}}</p>
+            <p><strong>职务: </strong>{{item.position}}</p>
+            <p><strong>职称: </strong>{{item.title}}</p>
+            <div class="btn">
+              <Button type="info" size="small">介绍</Button>
+              <Button v-if="title !='护士'" type="info" size="small">出诊信息</Button>
+            </div>
           </div>
-        </div>
+        </router-link>
+        
       </div>
     </div>
     <div class="page">
@@ -28,7 +31,7 @@ export default {
   name:'v-export-list',
   data(){
     return{
-      title:'专家介绍',
+      title:'专家',
       shengfen:'',
       count:12,
       limit:9,
@@ -83,13 +86,13 @@ export default {
       this.shengfen = shengfen;
       if(shengfen=='zhuanjia'){
         this.type ='1';
-        this.title='专家介绍';
+        this.title='专家';
       }else if (shengfen=='yisheng'){
         this.type ='2';
-        this.title='医生介绍';
+        this.title='医生';
       }else if (shengfen=='hushi'){
         this.type ='3';
-        this.title='护士介绍';
+        this.title='护士';
       }
       // console.log(this.limit,this.skip,this.type);
       this.getNews(this.limit,this.skip,this.type);
@@ -101,13 +104,13 @@ export default {
     this.shengfen = shengfen;
     if(shengfen=='zhuanjia'){
       this.type ='1';
-      this.title='专家介绍';
+      this.title='专家';
     }else if (shengfen=='yisheng'){
       this.type ='2';
-      this.title='医生介绍';
+      this.title='医生';
     }else if (shengfen=='hushi'){
       this.type ='3';
-      this.title='护士介绍';
+      this.title='护士';
     }
     // console.log(this.limit,this.skip,this.type);
     this.getNews(this.limit,this.skip,this.type);

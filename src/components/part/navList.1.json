@@ -70,6 +70,25 @@
     "list": []
   },
   {
+    "url": "/yisheng/list",
+    "name": "通讯录",
+    "list": [
+      {
+        "url": "/zhuanjia/list",
+        "name": "专家"
+      },
+      {
+        "url": "/yisheng/list",
+        "name": "医生"
+      },
+      
+      {
+        "url": "/hushi/list",
+        "name": "护士"
+      }
+    ]
+  },
+  {
     "url": "/zhinan/list",
     "name": "就医指南",
     "list": [

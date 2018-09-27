@@ -17,6 +17,7 @@
                 <router-link v-if="i.filter" :to="{ path: i.url,query:{name:i.filter}}">
                   {{i.name}}
                 </router-link>
+                <a v-else-if="i.name=='院长信箱'" :href="email">{{i.name}}</a>
                 <router-link v-else :to="{ path: i.url}">
                   {{i.name}}
                 </router-link>
@@ -50,6 +51,7 @@
     props: '',
     data() {
       return {
+        email:'',
         navIndex: 0,
         nav: [],
       }
@@ -137,13 +139,33 @@
             }
           )
           .catch()
-      }
+      },
+      getArticl:function () {
+          var that = this;
+          var params = new URLSearchParams();
+          params.append('query', JSON.stringify({title:"院长邮箱"}));
+          params.append('projection', JSON.stringify({"projection": {}}));
+          params.append('collection', 'special');
+          this.$axios({
+            method: 'post',
+            url:'/api/select',
+            data:params
+          })
+            .then(
+              function (res) {
+                // console.log(">>>>>>>>>>>>",res.data.data.content);
+                that.email ="mailto:"+res.data.data.content
+              }
+            )
+            .catch()
+        }
     },
     created(){
       this.nav=navData;
       this.importantList();
       this.equipment();
       this.Technical();
+      this.getArticl();
       // console.log(this.nav)
     }
 
