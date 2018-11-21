@@ -1,5 +1,5 @@
 <template>
-  <div class="container clearfix">
+  <div class="v-newDetailContainer clearfix">
     <div class="leaderHead">
       <span><strong>标题：</strong>{{articl.title}}</span>
       <span><span>时间：</span>{{articl.time}}</span>
@@ -76,7 +76,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @content: #657180;
   @text: #464c5b;
   @disable: #464c5b;
@@ -93,7 +93,7 @@
     clear: both;
   }
 
-  .container {
+  .v-newDetailContainer {
     width: 100%;
     padding: 15px 30px 50px 30px;
     border: 2px solid @shadow;
@@ -119,9 +119,11 @@
         }
       }
     }
-    .leaderList {
+    .leaderList *{
       width: 100%;
       overflow: hidden;
+      font-size: inherit;
+      // font-family: inherit;
       .leader-img {
         width: 142px;
         height: 206px;
@@ -146,6 +148,12 @@
         margin-top: 30px;
         font-size: 16px;
         color: @content;
+        span{
+          font-size: 1em;
+        }
+        font{
+          font-size: 1em
+          }
         img{
           max-width: 100%;
         }

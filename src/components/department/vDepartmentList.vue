@@ -162,13 +162,14 @@
                 display: inline-block;
                 height: 38px;
                 &:first-child{
-                  width: 90%;
+                  width: 550px;
                   overflow: hidden;
                   float: left;
+                  margin-left: 30px;
                 }
                 &:last-child{
-                  width: 10%;
-                  float: right;
+                  width:110px;
+                  float: left;
                 }
 
               }

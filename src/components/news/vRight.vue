@@ -59,6 +59,9 @@ export default {
             },{
               url: "/news/list?table=announcement&type=10",
               name: "患者心声"
+            },{
+              url: "/news/list?table=announcement&type=12",
+              name: "医护天地"
             }
             ]
         }

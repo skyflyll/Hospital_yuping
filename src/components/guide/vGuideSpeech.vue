@@ -1,5 +1,5 @@
 <template>
-  <div class="container clearfix">
+  <div class="v-GuideSpeechContainer clearfix">
     <div class="leaderHead">
       <span>{{articl.title}}</span>
     </div>
@@ -70,7 +70,7 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @content: #657180;
   @text: #464c5b;
   @disable: #464c5b;
@@ -86,7 +86,7 @@
     display: block;
     clear: both;
   }
-  .container {
+  .v-GuideSpeechContainer {
     width: 100%;
     padding: 15px 30px 50px 30px;
     border: 2px solid @shadow;

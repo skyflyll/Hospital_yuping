@@ -1,5 +1,5 @@
 <template>
-  <div class="container clearfix">
+  <div class="v-ExpoertContainer clearfix">
     <div class="export">
       <span>{{articl.department}}</span>
       <!--<span>{{articl.position}}</span>-->
@@ -110,7 +110,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 @content: #657180;
 @text: #464c5b;
 @disable: #464c5b;
@@ -127,7 +127,7 @@ export default {
   clear: both;
 }
 
-.container {
+.v-ExpoertContainer {
   width: 100%;
   padding: 15px 30px 50px 30px;
   border: 2px solid @shadow;
@@ -218,6 +218,16 @@ export default {
         min-height: 50px;
         padding: 20px 10px;
         background: @bgc;
+        font-size: inherit;
+        // font-family: inherit;
+        span{
+          font-size: 1em;
+        }
+        font{
+          font-size: 1em
+          }
+          font-size: inherit;
+          font-family: inherit;
         img{
           max-width: 100%;
         }

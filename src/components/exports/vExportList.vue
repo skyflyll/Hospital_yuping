@@ -59,11 +59,12 @@ export default {
         })
           .then(
             function (res) {
-              // console.log(res);
+              // console.log("kkkkkkkkkkkk",res);
               // that.recruits = res.data.data;
               res.data.data.map(function (item) {
                 // console.log(item)
-                that.count = res.data.data.count;
+                that.count = res.data.count;
+                console.log(that.count)
                 if(item.src){
                   item.src = item.src.replace("wwwroot","http://localhost:8088")
                 }
@@ -74,9 +75,9 @@ export default {
           .catch()
     },
     upGetList:function (i) {
-      // console.log(i)
+      // console.log("------------------",i)
       this.skip  = (i-1)*this.limit;
-      this.getNews(this.limit,this.skip);
+      this.getNews(this.limit,this.skip,this.type);
     }
   },
   watch:{

@@ -81,14 +81,21 @@
 
               that.newsCenter.map(function (item) {
                 // 将时间格式化你
-                var time = new Date(item.time);
+                let time = new Date(item.time);
                 item.time = time.toLocaleDateString().replace(/\//g, "-");
+
+                let para=document.createElement("p");
+                para.innerHTML=item.content;
+                item.content=para.innerText;
+
+                // console.log(htmls.innerHTML);
                 //内容格式化
                 item.content = item.content.replace(/(\n)/g, "");
                 item.content = item.content.replace(/(\t)/g, "");
                 item.content = item.content.replace(/(\r)/g, "");
                 item.content = item.content.replace(/<\/?[^>]*>/g, "");
                 item.content = item.content.replace(/\s*/g, "");
+                item.content = item.content.replace(/&nbsp;*/g, "");
                 item.content = item.content.replace(/&nbsp;*/g, "");
                 // console.log(item.content)
                 // console.log(item.time)

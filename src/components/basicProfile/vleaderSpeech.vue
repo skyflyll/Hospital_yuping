@@ -1,5 +1,5 @@
 <template>
-  <div class="container clearfix">
+  <div class="leaderSpeechContainer clearfix">
     <div class="leaderHead">
       <!--<span>{{articl.name}}</span>-->
       <!--<span>{{articl.position}}</span>-->
@@ -56,7 +56,7 @@
     }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   @content: #657180;
   @text: #464c5b;
   @disable: #464c5b;
@@ -72,7 +72,7 @@
     display: block;
     clear: both;
   }
-  .container {
+  .leaderSpeechContainer {
     width: 100%;
     padding: 15px 30px 50px 30px;
     border: 2px solid @shadow;

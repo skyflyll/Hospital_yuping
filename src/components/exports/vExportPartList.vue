@@ -79,7 +79,7 @@
               // that.recruits = res.data.data;
               res.data.data.map(function (item) {
                 // console.log(item)
-                that.count = res.data.data.count;
+                that.count = res.data.count;
                 if(item.src){
                   item.src = item.src.replace("wwwroot","http://localhost:8088")
                 }
@@ -91,8 +91,21 @@
       },
       upGetList:function (i) {
         // console.log(i)
+        var search = this.urlArgs(window.location.search);
+        var shengfen = window.location.pathname.split('/')[1];
+        this.shengfen = shengfen;
+        search.name=decodeURI(search.name,'UTF-8');
+        this.name = search.name;
+        this.type = search.type;
+        if(this.type==='1'){
+          this.title = '专家'
+        }else if(this.type==='2'){
+          this.title = '医生'
+        }else if(this.type==='3'){
+          this.title = '护士'
+        }
         this.skip  = (i-1)*this.limit;
-        this.getNews(this.limit,this.skip,this.name);
+        this.getNews(this.limit,this.skip,this.name,this.type);
       }
     },
     watch:{

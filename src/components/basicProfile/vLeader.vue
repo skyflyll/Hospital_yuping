@@ -42,12 +42,16 @@ export default {
     getLength:function (data) {
       data.map(function (item) {
         var rgx = /[\n]+/g;
-        var space = /[\s]+/g
+        var space = /[\s]+/g;
         item.detail= item.detail.replace(rgx,'');
         item.detail= item.detail.replace(space,'');
+        let para=document.createElement("p");
+        para.innerHTML=item.detail;
+        item.detail=para.innerText;
         // console.log(item.detail)
         item.src = item.src.replace("wwwroot","http://localhost:8088");
-        item.detail=item.detail.substr(1,130)+"......"
+        item.detail=item.detail.substr(0,120)+"..."
+        // console.log(item.detail)
       });
       return data;
     },
@@ -67,8 +71,9 @@ export default {
         .then(
           function (res) {
             // console.log(res);
-            that.count = res.data.count;
+            that.count = res.data.count; 
             // that.details=res.data.data;
+            // console.log(res.data.count);
             that.details=that.getLength(res.data.data);
             //["0"].src
             // console.log(that.details)
@@ -176,6 +181,7 @@ export default {
               height: 115px;
               padding: 15px;
               color: @content;
+              text-align: left;
               &>a{
                 color: red;
               }

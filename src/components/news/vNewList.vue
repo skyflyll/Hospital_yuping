@@ -12,6 +12,7 @@
       <div v-else-if="type ==11">健康讲座</div>
       <div v-else-if="type ==9">职工之家</div>
       <div v-else-if="type ==10">患者心声</div>
+      <div v-else-if="type ==12">医护天地</div>
 
     </div>
     <div class="leaderList">
@@ -41,7 +42,7 @@ export default {
       type:3,
       details:[],
       count:0,
-      limit:20,
+      limit:10,
       skip:0
     }
   },
@@ -102,8 +103,10 @@ export default {
     },
     //点击页码刷新数据
     upGetList:function (i) {
+      var serch = this.urlArgs(window.location.search);
+      this.type=serch.type;
       this.skip  = (i-1)*this.limit;
-      this.getList(this.limit,this.skip);
+      this.getList(this.limit,this.skip,this.type,serch.table);
     }
 
   },
@@ -112,14 +115,14 @@ export default {
     // console.log(window.location.search);
     var serch = this.urlArgs(window.location.search);
     this.type=serch.type;
-    this.getList(this.limit,this.skip,serch.type, serch.table);
+    this.getList(this.limit,this.skip,serch.type,serch.table);
     // console.log(this.limit,this.skip,serch.type, serch.table);
   },
   watch:{
     '$route': function () {
       var serch = this.urlArgs(window.location.search);
       this.type=serch.type;
-      this.limit = 20;
+      this.limit = 10;
       this.skip = 0;
       this.getList(this.limit,this.skip,serch.type, serch.table)
     }
@@ -183,13 +186,14 @@ export default {
               display: inline-block;
               height: 38px;
               &:first-child{
-                width: 90%;
+                width: 550px;
                 overflow: hidden;
                 float: left;
+                margin-left: 30px;
               }
               &:last-child{
-                width: 10%;
-                float: right;
+                width: 110px;
+                float: left;
               }
 
             }

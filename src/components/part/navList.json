@@ -111,5 +111,10 @@
     "name": "门诊安排",
     "filter": "门诊安排",
     "list":[]
+  },
+  {
+    "url": "/news/list?table=announcement&type=12",
+    "name": "医护天地",
+    "list": []
   }
 ]
